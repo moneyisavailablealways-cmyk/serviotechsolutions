@@ -1,27 +1,40 @@
 import logo from "@/assets/logo.jpg";
 import { Facebook, Instagram, Linkedin, Youtube, MessageCircle, Send } from "lucide-react";
-
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-
-  const socialLinks = [
-    { icon: Facebook, url: "https://facebook.com", label: "Facebook" },
-    { icon: Instagram, url: "https://instagram.com", label: "Instagram" },
-    { icon: Linkedin, url: "https://linkedin.com", label: "LinkedIn" },
-    { icon: Youtube, url: "https://youtube.com", label: "YouTube" },
-    { icon: MessageCircle, url: "https://wa.me/256704931000", label: "WhatsApp" },
-    { icon: Send, url: "https://t.me", label: "Telegram" }
-  ];
-
-  return (
-    <footer className="bg-foreground text-background py-12">
+  const socialLinks = [{
+    icon: Facebook,
+    url: "https://facebook.com",
+    label: "Facebook"
+  }, {
+    icon: Instagram,
+    url: "https://instagram.com",
+    label: "Instagram"
+  }, {
+    icon: Linkedin,
+    url: "https://linkedin.com",
+    label: "LinkedIn"
+  }, {
+    icon: Youtube,
+    url: "https://youtube.com",
+    label: "YouTube"
+  }, {
+    icon: MessageCircle,
+    url: "https://wa.me/256704931000",
+    label: "WhatsApp"
+  }, {
+    icon: Send,
+    url: "https://t.me",
+    label: "Telegram"
+  }];
+  return <footer className="bg-foreground text-background py-12">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-3 mb-4">
               <img src={logo} alt="STS Logo" className="h-12 w-12 rounded-full" />
               <div>
-                <h3 className="text-lg font-bold">Skyline Tech Solutions</h3>
+                <h3 className="text-lg font-bold">Servio Tech Solutions</h3>
                 <p className="text-sm text-background/70">Elevating Your Business</p>
               </div>
             </div>
@@ -51,7 +64,7 @@ const Footer = () => {
           <div>
             <h4 className="font-bold mb-4">Contact</h4>
             <ul className="space-y-2 text-sm text-background/70">
-              <li>skylinetech2022@gmail.com</li>
+              <li>serviotechsolutions@gmail.com</li>
               <li>+256 (704) 931-000</li>
               <li>Munyonyo-Kampala</li>
             </ul>
@@ -64,18 +77,9 @@ const Footer = () => {
               © {currentYear} Skyline Tech Solutions. All rights reserved.
             </p>
             <div className="flex gap-4">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className="bg-background/10 p-2 rounded-full hover:bg-secondary transition-colors"
-                >
+              {socialLinks.map((social, index) => <a key={index} href={social.url} target="_blank" rel="noopener noreferrer" aria-label={social.label} className="bg-background/10 p-2 rounded-full hover:bg-secondary transition-colors">
                   <social.icon className="w-5 h-5" />
-                </a>
-              ))}
+                </a>)}
             </div>
             <div className="flex gap-4 text-sm">
               <a href="#" className="text-background/70 hover:text-secondary transition-colors">Privacy Policy</a>
@@ -84,8 +88,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
