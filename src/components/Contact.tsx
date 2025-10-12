@@ -6,43 +6,37 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Mail, Phone, MapPin, CheckCircle2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-
 const Contact = () => {
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     company: "",
     message: ""
   });
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
       title: "Message Sent!",
-      description: "We'll get back to you as soon as possible.",
+      description: "We'll get back to you as soon as possible."
     });
-    setFormData({ name: "", email: "", company: "", message: "" });
+    setFormData({
+      name: "",
+      email: "",
+      company: "",
+      message: ""
+    });
   };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
-
-  const reasons = [
-    "Free consultation and project estimate",
-    "Experienced team of experts",
-    "Agile development methodology",
-    "Transparent communication",
-    "On-time delivery guarantee",
-    "Post-launch support included"
-  ];
-
-  return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
+  const reasons = ["Free consultation and project estimate", "Experienced team of experts", "Agile development methodology", "Transparent communication", "On-time delivery guarantee", "Post-launch support included"];
+  return <section id="contact" className="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-primary mb-4">Get in Touch</h2>
@@ -62,52 +56,19 @@ const Contact = () => {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <Label htmlFor="name">Full Name *</Label>
-                    <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="Your name"
-                      required
-                      className="mt-1"
-                    />
+                    <Input id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Your name" required className="mt-1" />
                   </div>
                   <div>
                     <Label htmlFor="email">Email Address *</Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="yourname@company.com"
-                      required
-                      className="mt-1"
-                    />
+                    <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} placeholder="yourname@company.com" required className="mt-1" />
                   </div>
                   <div>
                     <Label htmlFor="company">Company Name</Label>
-                    <Input
-                      id="company"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      placeholder="Your Company"
-                      className="mt-1"
-                    />
+                    <Input id="company" name="company" value={formData.company} onChange={handleChange} placeholder="Your Company" className="mt-1" />
                   </div>
                   <div>
                     <Label htmlFor="message">Project Details *</Label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Tell us about your project, timeline, and any specific requirements..."
-                      required
-                      rows={5}
-                      className="mt-1"
-                    />
+                    <Textarea id="message" name="message" value={formData.message} onChange={handleChange} placeholder="Tell us about your project, timeline, and any specific requirements..." required rows={5} className="mt-1" />
                   </div>
                   <Button type="submit" className="w-full bg-primary hover:bg-primary/90" size="lg">
                     Send Message
@@ -129,7 +90,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="font-semibold">Email</p>
-                    <p className="text-muted-foreground">skylinetech2022@gmail.com</p>
+                    <p className="text-muted-foreground">serviotechsolutions@gmail.com</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -138,7 +99,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="font-semibold">Phone</p>
-                    <p className="text-muted-foreground">+256 (704) 931-000</p>
+                    <p className="text-muted-foreground">+256 705-466-283</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -159,12 +120,10 @@ const Contact = () => {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
-                  {reasons.map((reason, index) => (
-                    <li key={index} className="flex items-start gap-2">
+                  {reasons.map((reason, index) => <li key={index} className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 mt-0.5 flex-shrink-0" />
                       <span>{reason}</span>
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
               </CardContent>
             </Card>
@@ -186,8 +145,6 @@ const Contact = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Contact;
