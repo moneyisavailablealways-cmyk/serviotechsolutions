@@ -13,6 +13,11 @@ const Header = () => {
       setIsMenuOpen(false);
     }
   };
+
+  const navigateTo = (path: string) => {
+    window.location.href = path;
+    setIsMenuOpen(false);
+  };
   return <header className="fixed top-0 left-0 right-0 z-50 bg-secondary shadow-md">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -35,6 +40,9 @@ const Header = () => {
           </button>
           <button onClick={() => scrollToSection("portfolio")} className="text-foreground hover:text-primary transition-colors">
             Portfolio
+          </button>
+          <button onClick={() => navigateTo("/leadership")} className="text-foreground hover:text-primary transition-colors">
+            Leadership Team
           </button>
           <Button onClick={() => scrollToSection("contact")} className="bg-primary hover:bg-primary/90">
             Get In Touch
@@ -59,6 +67,9 @@ const Header = () => {
             </button>
             <button onClick={() => scrollToSection("portfolio")} className="text-foreground hover:text-primary transition-colors text-left">
               Portfolio
+            </button>
+            <button onClick={() => navigateTo("/leadership")} className="text-foreground hover:text-primary transition-colors text-left">
+              Leadership Team
             </button>
             <Button onClick={() => scrollToSection("contact")} className="bg-primary hover:bg-primary/90 w-full">
               Get In Touch
