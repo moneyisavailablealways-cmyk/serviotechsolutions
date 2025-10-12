@@ -65,7 +65,7 @@ const Footer = () => {
             <h4 className="font-bold mb-4">Contact</h4>
             <ul className="space-y-2 text-sm text-background/70">
               <li>serviotechsolutions@gmail.com</li>
-              <li>+256 (704) 931-000</li>
+              <li>+256 705-466-283</li>
               <li>Munyonyo-Kampala</li>
             </ul>
           </div>
