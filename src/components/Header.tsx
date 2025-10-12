@@ -41,7 +41,7 @@ const Header = () => {
           <button onClick={() => scrollToSection("portfolio")} className="text-foreground hover:text-primary transition-colors">
             Portfolio
           </button>
-          <button onClick={() => navigateTo("/leadership")} className="text-foreground hover:text-primary transition-colors">
+          <button onClick={() => scrollToSection("leadership")} className="text-foreground hover:text-primary transition-colors">
             Leadership Team
           </button>
           <Button onClick={() => scrollToSection("contact")} className="bg-primary hover:bg-primary/90">
@@ -68,7 +68,7 @@ const Header = () => {
             <button onClick={() => scrollToSection("portfolio")} className="text-foreground hover:text-primary transition-colors text-left">
               Portfolio
             </button>
-            <button onClick={() => navigateTo("/leadership")} className="text-foreground hover:text-primary transition-colors text-left">
+            <button onClick={() => scrollToSection("leadership")} className="text-foreground hover:text-primary transition-colors text-left">
               Leadership Team
             </button>
             <Button onClick={() => scrollToSection("contact")} className="bg-primary hover:bg-primary/90 w-full">
