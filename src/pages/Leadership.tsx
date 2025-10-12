@@ -62,7 +62,7 @@ const Leadership = () => {
                 <Card key={index} className="overflow-hidden hover:shadow-2xl transition-all duration-300 border-primary/20">
                   <div className="bg-gradient-to-br from-primary/10 to-accent/10 p-8">
                     <div className="flex flex-col items-center text-center">
-                      <div className="w-48 h-48 rounded-full overflow-hidden mb-6 border-4 border-primary shadow-lg">
+                      <div className="w-48 h-48 rounded-full overflow-hidden mb-6 shadow-lg">
                         <img 
                           src={member.image} 
                           alt={member.name}
