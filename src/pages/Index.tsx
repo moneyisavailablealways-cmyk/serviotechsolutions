@@ -8,6 +8,7 @@ import Portfolio from "@/components/Portfolio";
 import Leadership from "@/components/Leadership";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 const Index = () => {
   return (
@@ -22,6 +23,7 @@ const Index = () => {
       <Leadership />
       <Contact />
       <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 };
