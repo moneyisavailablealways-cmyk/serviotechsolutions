@@ -29,7 +29,7 @@ const About = () => {
           <Card className="bg-white border-primary/20">
             <CardContent className="p-8">
               <div className="flex items-center gap-4 mb-4">
-                <div className="bg-primary/10 p-3 rounded-full">
+                <div className="p-3 rounded-full bg-yellow-400">
                   <Target className="w-8 h-8 text-primary" />
                 </div>
                 <h3 className="text-2xl font-bold text-primary">Our Mission</h3>
@@ -43,7 +43,7 @@ const About = () => {
           <Card className="bg-white border-primary/20">
             <CardContent className="p-8">
               <div className="flex items-center gap-4 mb-4">
-                <div className="bg-secondary/20 p-3 rounded-full">
+                <div className="p-3 rounded-full bg-amber-400">
                   <Eye className="w-8 h-8 text-secondary-foreground" />
                 </div>
                 <h3 className="text-2xl font-bold text-primary">Our Vision</h3>
@@ -60,7 +60,7 @@ const About = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => <Card key={index} className="bg-primary text-white hover:scale-105 transition-transform">
                 <CardContent className="p-6 text-center">
-                  <div className="bg-secondary/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-amber-400">
                     <value.icon className="w-8 h-8" />
                   </div>
                   <h4 className="text-xl font-bold mb-2">{value.title}</h4>
