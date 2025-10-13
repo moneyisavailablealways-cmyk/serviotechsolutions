@@ -1,8 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Phone } from "lucide-react";
 import geraldImg from "@/assets/gerald.png";
-import kevinImg from "@/assets/kevin-new.png";
-import brunoImg from "@/assets/bruno-new.png";
+import kevinImg from "@/assets/kevin.jpg";
+import brunoImg from "@/assets/bruno.jpg";
 import nicImg from "@/assets/nic.png";
 
 const Leadership = () => {
@@ -52,11 +52,11 @@ const Leadership = () => {
             <Card key={index} className="overflow-hidden hover:shadow-2xl transition-all duration-300 border-primary/20">
               <div className="bg-gradient-to-br from-primary/10 to-accent/10 p-8">
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-48 h-48 rounded-full overflow-hidden mb-6 shadow-lg bg-white">
+                  <div className="w-48 h-48 rounded-full overflow-hidden mb-6 shadow-lg">
                     <img 
                       src={member.image} 
                       alt={member.name}
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-cover"
                     />
                   </div>
                   <h2 className="text-2xl font-bold text-foreground mb-2">{member.name}</h2>
