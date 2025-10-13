@@ -49,7 +49,7 @@ const Leadership = () => {
 
         <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {teamMembers.map((member, index) => (
-            <Card key={index} className="overflow-hidden hover:shadow-2xl transition-all duration-300 border-primary/20">
+            <Card key={index} className="overflow-hidden hover:shadow-2xl transition-all duration-300 border-2 border-primary/60 hover:border-primary">
               <div className="bg-gradient-to-br from-primary/10 to-accent/10 p-8">
                 <div className="flex flex-col items-center text-center">
                   <div className="w-48 h-48 rounded-full overflow-hidden mb-6 shadow-lg">

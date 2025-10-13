@@ -50,7 +50,7 @@ const Portfolio = () => {
           <CarouselContent>
             {projects.map((project, index) => (
               <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/2">
-                <Card className="h-full hover:shadow-xl transition-shadow border-primary/20">
+                <Card className="h-full hover:shadow-xl transition-all duration-300 border-2 border-secondary/60 hover:border-secondary">
                   <CardHeader>
                     <div className="flex items-center justify-between mb-2">
                       <Badge className="bg-primary text-white">{project.category}</Badge>

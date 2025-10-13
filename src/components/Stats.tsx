@@ -18,7 +18,7 @@ const Stats = () => {
         </div>
         <div className="grid sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
           {stats.map((stat, index) => (
-            <Card key={index} className="bg-white/10 border-white/20 text-center">
+            <Card key={index} className="bg-white/10 border-2 border-secondary/60 hover:border-secondary text-center transition-all duration-300">
               <CardContent className="p-8">
                 <h3 className="text-5xl font-bold text-secondary mb-2">{stat.value}</h3>
                 <p className="text-white text-lg">{stat.label}</p>
