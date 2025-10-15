@@ -136,10 +136,19 @@ const Contact = () => {
             Schedule a free consultation call to discuss your project requirements and get a detailed estimate.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90">
+            <Button 
+              size="lg" 
+              className="bg-secondary text-secondary-foreground hover:bg-secondary/90"
+              onClick={() => window.open('https://wa.me/256705466283?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20consultation%20to%20discuss%20my%20project.', '_blank')}
+            >
               Schedule Consultation
             </Button>
-            <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-primary text-primary hover:bg-primary hover:text-white"
+              onClick={() => window.location.href = 'tel:+256705466283'}
+            >
               Call Now
             </Button>
           </div>
