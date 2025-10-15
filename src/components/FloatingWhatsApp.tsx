@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import whatsappIcon from "@/assets/whatsapp.svg";
+import whatsappIcon from "@/assets/whatsapp-official.png";
 
 const FloatingWhatsApp = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -146,8 +146,13 @@ const FloatingWhatsApp = () => {
         onClick={handleClick}
       >
         <div className="relative">
-          <div className="w-14 h-14 rounded-full bg-[#25D366] shadow-lg flex items-center justify-center transition-transform duration-200 hover:scale-110 active:scale-95">
-            <img src={whatsappIcon} alt="WhatsApp" className="w-8 h-8" />
+          <div className="relative w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer group">
+            {/* Animated gradient background */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#25D366] via-[#128C7E] to-[#075E54] animate-pulse"></div>
+            {/* Shining overlay effect */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            {/* Icon */}
+            <img src={whatsappIcon} alt="WhatsApp" className="w-9 h-9 relative z-10" />
           </div>
           
           {showTooltip && !hasInteracted && (
