@@ -12,17 +12,17 @@ const Leadership = () => {
     phones: ["0705466283", "0792586649"],
     description: "Gerald B leads Servio Tech Solutions with vision, innovation, and a passion for excellence. As both CEO and CMO, he oversees the company's strategic direction, partnerships, and branding efforts. His leadership ensures that Servio Tech remains a trusted name in technology and digital transformation across East Africa."
   }, {
-    name: "Kevin K",
+    name: "Bruno G.S",
     role: "Chief Technology Officer (CTO)",
-    image: kevinImg,
-    phones: ["0751880433"],
-    description: "Kevin K drives innovation and technical excellence at Servio Tech Solutions. He oversees software development, mobile apps, management systems, and API integrations. His deep technical expertise ensures that all products are reliable, scalable, and meet the latest global standards."
-  }, {
-    name: "Bruno G",
-    role: "Chief Operations Officer (COO)",
     image: brunoImg,
     phones: ["0708434656"],
-    description: "Bruno G manages day-to-day operations and ensures all projects are delivered on schedule, within budget, and to the highest standards. His leadership in operations guarantees smooth coordination between teams and consistent client satisfaction."
+    description: "Bruno G drives innovation and technical excellence at Servio Tech Solutions. He oversees software development, mobile apps, management systems, and API integrations. His deep technical expertise ensures that all products are reliable, scalable, and meet the latest global standards."
+  }, {
+    name: "Kevin K",
+    role: "Chief Operations Officer (COO)",
+    image: kevinImg,
+    phones: ["0751880433"],
+    description: "Kevin K manages day-to-day operations and ensures all projects are delivered on schedule, within budget, and to the highest standards. His leadership in operations guarantees smooth coordination between teams and consistent client satisfaction."
   }, {
     name: "Sir Nic Omubedhe M",
     role: "Company Mentor",

@@ -74,7 +74,7 @@ const Footer = () => {
         <div className="border-t border-background/20 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-background/70">
-              © {currentYear} Skyline Tech Solutions. All rights reserved.
+              © {currentYear} Servio Tech Solutions. All rights reserved.
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social, index) => <a key={index} href={social.url} target="_blank" rel="noopener noreferrer" aria-label={social.label} className="bg-background/10 p-2 rounded-full hover:bg-secondary transition-colors">

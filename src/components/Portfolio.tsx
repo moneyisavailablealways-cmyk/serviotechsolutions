@@ -11,6 +11,7 @@ const Portfolio = () => {
       description: "A knowledge platform featuring proverbs, idioms, similes, and quotes, designed for easy exploration with modern UI/UX and AI integration.",
       year: "2025",
       category: "Web Development",
+      liveUrl: "https://wisdomempirehub.com",
       technologies: ["React", "TypeScript", "Tailwind CSS", "AI Integration"]
     },
     {
@@ -69,8 +70,8 @@ const Portfolio = () => {
                       ))}
                     </div>
                     <Button variant="outline" className="w-full border-primary text-primary hover:bg-primary hover:text-white">
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      View Project
+                      <a href={project.liveUrl} className="btn-primary flex-1 text-center">
+                        <ExternalLink className="w-4 h-4 mr-2 inline" />View Live</a>
                     </Button>
                   </CardContent>
                 </Card>
