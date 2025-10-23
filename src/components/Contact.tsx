@@ -6,37 +6,93 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Mail, Phone, MapPin, CheckCircle2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import emailjs from "@emailjs/browser";
+
 const Contact = () => {
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     company: "",
     message: ""
   });
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const [loading, setLoading] = useState(false); // ✅ Loading state
+
+  const SERVICE_ID = "serviotech@12345";
+  const TEMPLATE_ID = "template_i5q67de";
+  const AUTO_REPLY_TEMPLATE_ID = "template_vvpuvd8";
+  const PUBLIC_KEY = "Ep9iSpdsMM3qcJPC-";
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you as soon as possible."
-    });
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      message: ""
-    });
+    setLoading(true); // start loading
+
+    try {
+      // Send message to you
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          company: formData.company,
+          message: formData.message
+        },
+        PUBLIC_KEY
+      );
+
+      // Auto-reply to user
+      await emailjs.send(
+        SERVICE_ID,
+        AUTO_REPLY_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          to_email: formData.email
+        },
+        PUBLIC_KEY
+      );
+
+      toast({
+        title: "Message Sent!",
+        description: "We'll get back to you as soon as possible."
+      });
+
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        message: ""
+      });
+    } catch (error) {
+      console.error("EmailJS error:", error);
+      toast({
+        title: "Failed to Send Message",
+        description: "Something went wrong. Please try again later."
+      });
+    } finally {
+      setLoading(false); // stop loading
+    }
   };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
-  const reasons = ["Free consultation and project estimate", "Experienced team of experts", "Agile development methodology", "Transparent communication", "On-time delivery guarantee", "Post-launch support included"];
-  return <section id="contact" className="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
+
+  const reasons = [
+    "Free consultation and project estimate",
+    "Experienced team of experts",
+    "Agile development methodology",
+    "Transparent communication",
+    "On-time delivery guarantee",
+    "Post-launch support included"
+  ];
+
+  return (
+    <section id="contact" className="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-primary mb-4">Get in Touch</h2>
@@ -70,14 +126,15 @@ const Contact = () => {
                     <Label htmlFor="message">Project Details *</Label>
                     <Textarea id="message" name="message" value={formData.message} onChange={handleChange} placeholder="Tell us about your project, timeline, and any specific requirements..." required rows={5} className="mt-1" />
                   </div>
-                  <Button type="submit" className="w-full bg-primary hover:bg-primary/90" size="lg">
-                    Send Message
+                  <Button type="submit" className="w-full bg-primary hover:bg-primary/90" size="lg" disabled={loading}>
+                    {loading ? "Sending..." : "Send Message"} {/* ✅ Loading feedback */}
                   </Button>
                 </form>
               </CardContent>
             </Card>
           </div>
 
+          {/* The rest of your component remains unchanged */}
           <div className="space-y-6">
             <Card className="border-primary/20">
               <CardHeader>
@@ -120,10 +177,12 @@ const Contact = () => {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
-                  {reasons.map((reason, index) => <li key={index} className="flex items-start gap-2">
+                  {reasons.map((reason, index) => (
+                    <li key={index} className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 mt-0.5 flex-shrink-0" />
                       <span>{reason}</span>
-                    </li>)}
+                    </li>
+                  ))}
                 </ul>
               </CardContent>
             </Card>
@@ -154,6 +213,8 @@ const Contact = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default Contact;
