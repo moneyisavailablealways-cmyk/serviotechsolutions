@@ -19,7 +19,7 @@ const Contact = () => {
 
   const [loading, setLoading] = useState(false); // ✅ Loading state
 
-  const SERVICE_ID = "serviotech@12345";
+  const SERVICE_ID = "service_olg830h";
   const TEMPLATE_ID = "template_i5q67de";
   const AUTO_REPLY_TEMPLATE_ID = "template_vvpuvd8";
   const PUBLIC_KEY = "Ep9iSpdsMM3qcJPC-";

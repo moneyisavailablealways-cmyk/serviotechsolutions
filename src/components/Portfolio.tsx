@@ -8,6 +8,7 @@ const Portfolio = () => {
   const projects = [
     {
       title: "Wisdom Empire Hub",
+      image: "/lovable-uploads/eafcbbc5-af59-485e-ac62-204162fd5ad0.png",
       description: "A knowledge platform featuring proverbs, idioms, similes, and quotes, designed for easy exploration with modern UI/UX and AI integration.",
       year: "2025",
       category: "Web Development",
