@@ -20,6 +20,7 @@ const Portfolio = () => {
       description: "A full-stack e-commerce solution built with React, Node.js, and PostgreSQL. Features include user authentication, payment processing, and admin dashboard.",
       year: "2024",
       category: "Web Development",
+      liveUrl: "https://reporto-level.netlify.app",
       technologies: ["React", "Node.js", "PostgreSQL", "Stripe", "JWT"]
     },
     {
