@@ -16,17 +16,22 @@ const Footer = () => {
     label: "LinkedIn"
   }, {
     icon: Youtube,
-    url: "https://youtube.com",
+    url: "https://youtube.com/@serviotechsolutions",
     label: "YouTube"
   }, {
     icon: MessageCircle,
-    url: "https://wa.me/256704931000",
+    url: "https://wa.me/+256705466283",
     label: "WhatsApp"
   }, {
     icon: Send,
-    url: "https://t.me",
+    url: "https://t.me/+256705466283",
     label: "Telegram"
-  }];
+  },{
+    icon: MessageCircle,
+    url: "https://wa.me/+256705466283",
+    label: "WhatsApp"
+  },
+];
   return <footer className="text-background py-12 bg-blue-700">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8 mb-8">

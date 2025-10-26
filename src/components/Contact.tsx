@@ -150,6 +150,7 @@ const Contact = () => {
                     <p className="text-muted-foreground">serviotechsolutions@gmail.com</p>
                   </div>
                 </div>
+
                 <div className="flex items-center gap-4">
                   <div className="bg-primary/10 p-3 rounded-full">
                     <Phone className="w-6 h-6 text-primary" />
@@ -159,18 +160,32 @@ const Contact = () => {
                     <p className="text-muted-foreground">+256 705-466-283</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4">
+
+                <div className="flex items-start gap-4">
                   <div className="bg-primary/10 p-3 rounded-full">
                     <MapPin className="w-6 h-6 text-primary" />
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <p className="font-semibold">Office</p>
-                    <p className="text-muted-foreground">Munyonyo-Kampala</p>
+                    <p className="text-muted-foreground">Lwasa, near Paradis Motel, Munyonyo–Kampala</p>
+
+                    {/* Google Map Embed */}
+                    <div className="mt-3 rounded-2xl overflow-hidden shadow-md">
+                      <iframe
+                        src="https://www.google.com/maps?q=Lwasa%20Salaama%20Kampala&output=embed"
+                        width="100%"
+                        height="250"
+                        style={{ border: 0 }}
+                        allowFullScreen={true}
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                      ></iframe>
+                    </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
-
+          
             <Card className="border-primary/20 bg-primary text-white">
               <CardHeader>
                 <CardTitle className="text-2xl">Why work with us?</CardTitle>
