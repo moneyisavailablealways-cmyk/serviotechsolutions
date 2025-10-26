@@ -16,11 +16,19 @@ const Portfolio = () => {
       technologies: ["React", "TypeScript", "Tailwind CSS", "AI Integration"]
     },
     {
-      title: "E-Commerce Platform",
+      title: "Repor Card Generator",
       description: "A full-stack e-commerce solution built with React, Node.js, and PostgreSQL. Features include user authentication, payment processing, and admin dashboard.",
       year: "2024",
-      category: "Web Development",
+      category: "Web app Development",
       liveUrl: "https://reporto-level.netlify.app",
+      technologies: ["React", "Node.js", "PostgreSQL", "Stripe", "JWT"]
+    },
+    {
+      title: "Excellence Academy",
+      description: "A full-stack e-commerce solution built with React, Node.js, and PostgreSQL. Features include user authentication, payment processing, and admin dashboard.",
+      year: "2024",
+      category: "Web app Development",
+      liveUrl: "https://exellenceacademy.netlify.app",
       technologies: ["React", "Node.js", "PostgreSQL", "Stripe", "JWT"]
     },
     {
