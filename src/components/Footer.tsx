@@ -8,7 +8,7 @@ const Footer = () => {
     label: "Facebook"
   }, {
     icon: Instagram,
-    url: "https://instagram.com",
+    url: "https://www.instagram.com/serviotecgsolutions",
     label: "Instagram"
   }, {
     icon: Linkedin,
@@ -26,10 +26,6 @@ const Footer = () => {
     icon: Send,
     url: "https://t.me/+256705466283",
     label: "Telegram"
-  },{
-    icon: MessageCircle,
-    url: "https://wa.me/+256705466283",
-    label: "WhatsApp"
   },
 ];
   return <footer className="text-background py-12 bg-blue-700">
