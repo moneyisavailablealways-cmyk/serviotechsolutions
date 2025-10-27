@@ -12,7 +12,7 @@ const Footer = () => {
     label: "Instagram"
   }, {
     icon: Linkedin,
-    url: "https://linkedin.com",
+    url: "https://www.linkedin.com/in/servio-tech-solutions-gerald-098aa7394",
     label: "LinkedIn"
   }, {
     icon: Youtube,
