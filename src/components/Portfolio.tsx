@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import wisdomImage from "@/assets/wisdom-empire-thumbnail.png";
+import wisdomImage from "@/assets/hero-bg-1.jpg";
 import reportCardImage from "@/assets/portfolio-reportcard.jpg";
 import academyImage from "@/assets/portfolio-academy.jpg";
 import bankingImage from "@/assets/portfolio-banking.jpg";
