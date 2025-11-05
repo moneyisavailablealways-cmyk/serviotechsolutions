@@ -29,7 +29,7 @@ const Contact = () => {
     setLoading(true); // start loading
 
     try {
-      // Send message to you
+      // Send message to you (main email)
       await emailjs.send(
         SERVICE_ID,
         TEMPLATE_ID,
@@ -42,16 +42,22 @@ const Contact = () => {
         PUBLIC_KEY
       );
 
-      // Auto-reply to user
-      await emailjs.send(
-        SERVICE_ID,
-        AUTO_REPLY_TEMPLATE_ID,
-        {
-          from_name: formData.name,
-          to_email: formData.email
-        },
-        PUBLIC_KEY
-      );
+      // Try to send auto-reply to user (non-blocking)
+      try {
+        await emailjs.send(
+          SERVICE_ID,
+          AUTO_REPLY_TEMPLATE_ID,
+          {
+            from_name: formData.name,
+            to_email: formData.email,
+            user_email: formData.email // Adding alternate parameter name
+          },
+          PUBLIC_KEY
+        );
+      } catch (autoReplyError) {
+        // Log but don't fail the form submission
+        console.log("Auto-reply failed (non-critical):", autoReplyError);
+      }
 
       toast({
         title: "Message Sent!",
@@ -68,7 +74,8 @@ const Contact = () => {
       console.error("EmailJS error:", error);
       toast({
         title: "Failed to Send Message",
-        description: "Something went wrong. Please try again later."
+        description: "Something went wrong. Please try again later.",
+        variant: "destructive"
       });
     } finally {
       setLoading(false); // stop loading
