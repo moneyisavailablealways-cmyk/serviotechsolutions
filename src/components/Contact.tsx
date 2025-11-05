@@ -42,15 +42,17 @@ const Contact = () => {
         PUBLIC_KEY
       );
 
-      // Try to send auto-reply to user (non-blocking)
+      // Try to send auto-reply to user (non-blocking). We pass multiple param aliases to match template vars.
       try {
         await emailjs.send(
           SERVICE_ID,
           AUTO_REPLY_TEMPLATE_ID,
           {
             from_name: formData.name,
-            to_email: formData.email,
-            user_email: formData.email // Adding alternate parameter name
+            to_email: formData.email, // common EmailJS var
+            reply_to: formData.email, // alternative var many templates use
+            user_email: formData.email, // extra alias if template expects this
+            to_name: formData.name
           },
           PUBLIC_KEY
         );
