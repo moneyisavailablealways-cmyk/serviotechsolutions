@@ -1,10 +1,20 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Play } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 
 const Videos = () => {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+  const [api, setApi] = useState<CarouselApi>();
+  const [autoplay, setAutoplay] = useState(true);
 
   const videos = [
     {
@@ -57,6 +67,67 @@ const Videos = () => {
     }
   ];
 
+  // Auto-play carousel every 5 seconds on mobile
+  useEffect(() => {
+    if (!api || !autoplay) return;
+
+    const interval = setInterval(() => {
+      if (api.canScrollNext()) {
+        api.scrollNext();
+      } else {
+        api.scrollTo(0);
+      }
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [api, autoplay]);
+
+  // Stop autoplay when user interacts
+  const handleVideoClick = useCallback((videoUrl: string) => {
+    setAutoplay(false);
+    setSelectedVideo(videoUrl);
+  }, []);
+
+  const handleCarouselInteraction = useCallback(() => {
+    setAutoplay(false);
+  }, []);
+
+  const renderVideoCard = (video: typeof videos[0], index: number) => (
+    <Card 
+      key={video.id}
+      className="group overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer animate-fade-in border-2 hover:border-primary/50"
+      style={{ animationDelay: `${index * 100}ms` }}
+      onClick={() => handleVideoClick(video.videoUrl)}
+    >
+      <CardContent className="p-0">
+        <div className="relative overflow-hidden aspect-video">
+          <img 
+            src={video.thumbnail} 
+            alt={video.title}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-16 h-16 rounded-full bg-primary/90 backdrop-blur-sm flex items-center justify-center transform group-hover:scale-110 transition-transform">
+              <Play className="w-8 h-8 text-primary-foreground ml-1" fill="currentColor" />
+            </div>
+          </div>
+          <Badge className="absolute top-4 right-4 bg-secondary/90 backdrop-blur-sm">
+            {video.category}
+          </Badge>
+        </div>
+        <div className="p-6">
+          <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+            {video.title}
+          </h3>
+          <p className="text-muted-foreground text-sm">
+            {video.description}
+          </p>
+        </div>
+      </CardContent>
+    </Card>
+  );
+
   return (
     <section id="videos" className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -67,42 +138,37 @@ const Videos = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {videos.map((video, index) => (
-            <Card 
-              key={video.id}
-              className="group overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer animate-fade-in border-2 hover:border-primary/50"
-              style={{ animationDelay: `${index * 100}ms` }}
-              onClick={() => setSelectedVideo(video.videoUrl)}
-            >
-              <CardContent className="p-0">
-                <div className="relative overflow-hidden aspect-video">
-                  <img 
-                    src={video.thumbnail} 
-                    alt={video.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-16 h-16 rounded-full bg-primary/90 backdrop-blur-sm flex items-center justify-center transform group-hover:scale-110 transition-transform">
-                      <Play className="w-8 h-8 text-primary-foreground ml-1" fill="currentColor" />
-                    </div>
-                  </div>
-                  <Badge className="absolute top-4 right-4 bg-secondary/90 backdrop-blur-sm">
-                    {video.category}
-                  </Badge>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                    {video.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm">
-                    {video.description}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+        {/* Mobile Carousel - Shows on small screens */}
+        <div className="md:hidden">
+          <Carousel
+            setApi={setApi}
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {videos.map((video, index) => (
+                <CarouselItem key={video.id}>
+                  {renderVideoCard(video, index)}
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious 
+              className="left-2" 
+              onClick={handleCarouselInteraction}
+            />
+            <CarouselNext 
+              className="right-2" 
+              onClick={handleCarouselInteraction}
+            />
+          </Carousel>
+        </div>
+
+        {/* Grid Layout - Shows on medium and larger screens */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {videos.map((video, index) => renderVideoCard(video, index))}
         </div>
       </div>
 
