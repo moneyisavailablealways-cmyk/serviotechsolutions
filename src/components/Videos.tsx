@@ -11,10 +11,13 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 
+const categories = ["All", "Company", "Services", "Demo", "Testimonials"] as const;
+
 const Videos = () => {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [api, setApi] = useState<CarouselApi>();
   const [autoplay, setAutoplay] = useState(true);
+  const [activeCategory, setActiveCategory] = useState<string>("All");
 
   const videos = [
     {
@@ -92,6 +95,10 @@ const Videos = () => {
     setAutoplay(false);
   }, []);
 
+  const filteredVideos = activeCategory === "All" 
+    ? videos 
+    : videos.filter(video => video.category === activeCategory);
+
   const renderVideoCard = (video: typeof videos[0], index: number) => (
     <Card 
       key={video.id}
@@ -133,42 +140,65 @@ const Videos = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl font-bold mb-4">Video Resources</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg mb-8">
             Watch our videos to learn more about our services, see our work in action, and hear from our team and clients.
           </p>
+          <div className="flex flex-wrap justify-center gap-2">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeCategory === category
+                    ? "bg-primary text-primary-foreground shadow-lg"
+                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Mobile Carousel - Shows on small screens */}
         <div className="md:hidden">
-          <Carousel
-            setApi={setApi}
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent>
-              {videos.map((video, index) => (
-                <CarouselItem key={video.id}>
-                  {renderVideoCard(video, index)}
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious 
-              className="left-2" 
-              onClick={handleCarouselInteraction}
-            />
-            <CarouselNext 
-              className="right-2" 
-              onClick={handleCarouselInteraction}
-            />
-          </Carousel>
+          {filteredVideos.length > 0 ? (
+            <Carousel
+              setApi={setApi}
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent>
+                {filteredVideos.map((video, index) => (
+                  <CarouselItem key={video.id}>
+                    {renderVideoCard(video, index)}
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious 
+                className="left-2" 
+                onClick={handleCarouselInteraction}
+              />
+              <CarouselNext 
+                className="right-2" 
+                onClick={handleCarouselInteraction}
+              />
+            </Carousel>
+          ) : (
+            <p className="text-center text-muted-foreground">No videos in this category.</p>
+          )}
         </div>
 
         {/* Grid Layout - Shows on medium and larger screens */}
         <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {videos.map((video, index) => renderVideoCard(video, index))}
+          {filteredVideos.length > 0 ? (
+            filteredVideos.map((video, index) => renderVideoCard(video, index))
+          ) : (
+            <p className="col-span-full text-center text-muted-foreground">No videos in this category.</p>
+          )}
         </div>
       </div>
 
