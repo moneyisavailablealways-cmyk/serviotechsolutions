@@ -2,7 +2,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink } from "lucide-react";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
+import { useState, useEffect } from "react";
 import wisdomImage from "@/assets/wisdom-empire-thumbnail.png";
 import reportCardImage from "@/assets/portfolio-reportcard.jpg";
 import academyImage from "@/assets/portfolio-academy.jpg";
@@ -10,6 +11,9 @@ import bankingImage from "@/assets/portfolio-banking.jpg";
 import healthcareImage from "@/assets/portfolio-healthcare.jpg";
 
 const Portfolio = () => {
+  const [api, setApi] = useState<CarouselApi>();
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [autoplay, setAutoplay] = useState(true);
   const projects = [
     {
       title: "Wisdom Empire Hub",
@@ -56,6 +60,37 @@ const Portfolio = () => {
     }
   ];
 
+  // Track current slide
+  useEffect(() => {
+    if (!api) return;
+
+    const onSelect = () => {
+      setCurrentSlide(api.selectedScrollSnap());
+    };
+
+    api.on("select", onSelect);
+    onSelect();
+
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
+
+  // Auto-play carousel every 5 seconds
+  useEffect(() => {
+    if (!api || !autoplay) return;
+
+    const interval = setInterval(() => {
+      api.scrollNext();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [api, autoplay]);
+
+  const handleInteraction = () => {
+    setAutoplay(false);
+  };
+
   return (
     <section id="portfolio" className="py-20 bg-muted">
       <div className="container mx-auto px-4">
@@ -66,10 +101,14 @@ const Portfolio = () => {
           </p>
         </div>
 
-        <Carousel className="max-w-6xl mx-auto">
-          <CarouselContent>
+        <Carousel 
+          className="max-w-6xl mx-auto"
+          setApi={setApi}
+          opts={{ loop: true }}
+        >
+          <CarouselContent className="animate-slide-in-right">
             {projects.map((project, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/2">
+              <CarouselItem key={index} className="basis-full md:basis-1/2 lg:basis-1/2">
                 <Card className="h-full hover:shadow-xl transition-all duration-300 border-2 border-secondary/60 hover:border-secondary overflow-hidden">
                   <div className="relative w-full h-48 overflow-hidden">
                     <img 
@@ -104,9 +143,28 @@ const Portfolio = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          <CarouselPrevious onClick={handleInteraction} />
+          <CarouselNext onClick={handleInteraction} />
         </Carousel>
+
+        {/* Dot Indicators */}
+        <div className="flex justify-center gap-2 mt-4">
+          {projects.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                api?.scrollTo(index);
+                handleInteraction();
+              }}
+              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                currentSlide === index
+                  ? "bg-primary w-6"
+                  : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+              }`}
+              aria-label={`Go to project ${index + 1}`}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
