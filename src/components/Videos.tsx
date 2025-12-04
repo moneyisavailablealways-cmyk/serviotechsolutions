@@ -19,6 +19,7 @@ const Videos = () => {
   const [autoplay, setAutoplay] = useState(true);
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const handleCategoryChange = (category: string) => {
     if (category === activeCategory) return;
@@ -79,6 +80,22 @@ const Videos = () => {
       videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" // Replace with actual video
     }
   ];
+
+  // Track current slide
+  useEffect(() => {
+    if (!api) return;
+
+    const onSelect = () => {
+      setCurrentSlide(api.selectedScrollSnap());
+    };
+
+    api.on("select", onSelect);
+    onSelect();
+
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
 
   // Auto-play carousel every 5 seconds on mobile
   useEffect(() => {
@@ -199,6 +216,26 @@ const Videos = () => {
             </Carousel>
           ) : (
             <p className="text-center text-muted-foreground">No videos in this category.</p>
+          )}
+          {/* Dot Indicators */}
+          {filteredVideos.length > 1 && (
+            <div className="flex justify-center gap-2 mt-4">
+              {filteredVideos.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    api?.scrollTo(index);
+                    setAutoplay(false);
+                  }}
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                    currentSlide === index
+                      ? "bg-primary w-6"
+                      : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                  }`}
+                  aria-label={`Go to video ${index + 1}`}
+                />
+              ))}
+            </div>
           )}
         </div>
 
