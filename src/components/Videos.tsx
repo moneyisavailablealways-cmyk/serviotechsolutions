@@ -18,6 +18,16 @@ const Videos = () => {
   const [api, setApi] = useState<CarouselApi>();
   const [autoplay, setAutoplay] = useState(true);
   const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const handleCategoryChange = (category: string) => {
+    if (category === activeCategory) return;
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setActiveCategory(category);
+      setIsTransitioning(false);
+    }, 200);
+  };
 
   const videos = [
     {
@@ -147,10 +157,10 @@ const Videos = () => {
             {categories.map((category) => (
               <button
                 key={category}
-                onClick={() => setActiveCategory(category)}
+                onClick={() => handleCategoryChange(category)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   activeCategory === category
-                    ? "bg-primary text-primary-foreground shadow-lg"
+                    ? "bg-primary text-primary-foreground shadow-lg scale-105"
                     : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
                 }`}
               >
@@ -161,7 +171,7 @@ const Videos = () => {
         </div>
 
         {/* Mobile Carousel - Shows on small screens */}
-        <div className="md:hidden">
+        <div className={`md:hidden transition-all duration-300 ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
           {filteredVideos.length > 0 ? (
             <Carousel
               setApi={setApi}
@@ -193,7 +203,7 @@ const Videos = () => {
         </div>
 
         {/* Grid Layout - Shows on medium and larger screens */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className={`hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-300 ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
           {filteredVideos.length > 0 ? (
             filteredVideos.map((video, index) => renderVideoCard(video, index))
           ) : (
