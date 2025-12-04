@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Play, Pause } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
 import { useState, useEffect } from "react";
 import wisdomImage from "@/assets/wisdom-empire-thumbnail.png";
@@ -147,23 +147,36 @@ const Portfolio = () => {
           <CarouselNext onClick={handleInteraction} />
         </Carousel>
 
-        {/* Dot Indicators */}
-        <div className="flex justify-center gap-2 mt-4">
-          {projects.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => {
-                api?.scrollTo(index);
-                handleInteraction();
-              }}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                currentSlide === index
-                  ? "bg-primary w-6"
-                  : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
-              }`}
-              aria-label={`Go to project ${index + 1}`}
-            />
-          ))}
+        {/* Dot Indicators with Play/Pause */}
+        <div className="flex justify-center items-center gap-3 mt-4">
+          <button
+            onClick={() => setAutoplay(!autoplay)}
+            className="w-8 h-8 rounded-full bg-primary/10 hover:bg-primary/20 flex items-center justify-center transition-all duration-300"
+            aria-label={autoplay ? "Pause auto-advance" : "Play auto-advance"}
+          >
+            {autoplay ? (
+              <Pause className="w-4 h-4 text-primary" />
+            ) : (
+              <Play className="w-4 h-4 text-primary" />
+            )}
+          </button>
+          <div className="flex gap-2">
+            {projects.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  api?.scrollTo(index);
+                  handleInteraction();
+                }}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                  currentSlide === index
+                    ? "bg-primary w-6"
+                    : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                }`}
+                aria-label={`Go to project ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
