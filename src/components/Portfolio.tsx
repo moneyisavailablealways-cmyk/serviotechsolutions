@@ -108,7 +108,7 @@ const Portfolio = () => {
         >
           <CarouselContent className="animate-slide-in-right">
             {projects.map((project, index) => (
-              <CarouselItem key={index} className="basis-full md:basis-1/2 lg:basis-1/2">
+              <CarouselItem key={index} className="basis-full md:basis-1/2 lg:basis-1/3">
                 <Card className="h-full hover:shadow-xl transition-all duration-300 border-2 border-secondary/60 hover:border-secondary overflow-hidden">
                   <div className="relative w-full h-48 overflow-hidden">
                     <img 
