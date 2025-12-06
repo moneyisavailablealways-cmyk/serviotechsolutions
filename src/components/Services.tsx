@@ -31,21 +31,21 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-2 gap-3 sm:gap-6">
           {services.map((service, index) => <Card key={index} className="hover:shadow-xl transition-all duration-300 border-2 border-primary/60 hover:border-primary">
-              <CardHeader>
-                <div className="w-14 h-14 rounded-lg flex items-center justify-center mb-4 bg-amber-400">
-                  <service.icon className="w-8 h-8 text-primary" />
+              <CardHeader className="p-3 sm:p-6">
+                <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-lg flex items-center justify-center mb-2 sm:mb-4 bg-amber-400">
+                  <service.icon className="w-5 h-5 sm:w-8 sm:h-8 text-primary" />
                 </div>
-                <CardTitle className="text-2xl text-primary">{service.title}</CardTitle>
-                <CardDescription className="text-base font-bold">{service.description}</CardDescription>
+                <CardTitle className="text-sm sm:text-xl text-primary">{service.title}</CardTitle>
+                <CardDescription className="text-xs sm:text-base font-bold hidden sm:block">{service.description}</CardDescription>
               </CardHeader>
-              <CardContent>
-                <p className="font-semibold mb-3 text-foreground">Key Features:</p>
-                <ul className="space-y-2">
+              <CardContent className="p-3 pt-0 sm:p-6 sm:pt-0">
+                <p className="font-semibold mb-2 sm:mb-3 text-foreground text-xs sm:text-base">Key Features:</p>
+                <ul className="space-y-1 sm:space-y-2">
                   {service.features.map((feature, idx) => <li key={idx} className="flex items-start">
-                      <span className="text-secondary mr-2">✓</span>
-                      <span className="text-muted-foreground font-bold">{feature}</span>
+                      <span className="text-secondary mr-1 sm:mr-2 text-xs sm:text-base">✓</span>
+                      <span className="text-muted-foreground font-bold text-xs sm:text-sm">{feature}</span>
                     </li>)}
                 </ul>
               </CardContent>
