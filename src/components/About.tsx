@@ -56,15 +56,15 @@ const About = () => {
         </div>
 
         <div>
-          <h3 className="text-3xl font-bold text-center mb-12 text-primary">Our Core Values</h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((value, index) => <Card key={index} className="bg-primary text-white hover:scale-105 transition-transform">
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-amber-400">
-                    <value.icon className="w-8 h-8" />
+          <h3 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 text-primary">Our Core Values</h3>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+            {values.map((value, index) => <Card key={index} className="bg-primary text-primary-foreground hover:scale-105 transition-transform">
+                <CardContent className="p-3 sm:p-5 text-center">
+                  <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3 bg-amber-400">
+                    <value.icon className="w-5 h-5 sm:w-7 sm:h-7" />
                   </div>
-                  <h4 className="text-xl font-bold mb-2">{value.title}</h4>
-                  <p className="text-white/80 text-sm">{value.description}</p>
+                  <h4 className="text-sm sm:text-lg font-bold mb-1">{value.title}</h4>
+                  <p className="text-primary-foreground/80 text-xs sm:text-sm leading-tight">{value.description}</p>
                 </CardContent>
               </Card>)}
           </div>
