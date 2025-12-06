@@ -146,8 +146,21 @@ const FloatingWhatsApp = () => {
         onClick={handleClick}
       >
         <div className="relative">
-          <div className="relative w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer">
-            <img src={whatsappIcon} alt="WhatsApp" className="w-14 h-14" />
+          {/* Animated bubbles */}
+          <div className="absolute inset-0 pointer-events-none">
+            <span className="absolute w-3 h-3 bg-[#25D366]/60 rounded-full animate-bubble-1"></span>
+            <span className="absolute w-2 h-2 bg-[#25D366]/50 rounded-full animate-bubble-2"></span>
+            <span className="absolute w-2.5 h-2.5 bg-[#25D366]/40 rounded-full animate-bubble-3"></span>
+            <span className="absolute w-1.5 h-1.5 bg-[#25D366]/70 rounded-full animate-bubble-4"></span>
+            <span className="absolute w-2 h-2 bg-[#25D366]/50 rounded-full animate-bubble-5"></span>
+          </div>
+          
+          {/* Pulse ring effect */}
+          <div className="absolute inset-0 w-14 h-14 rounded-full bg-[#25D366]/20 animate-ping"></div>
+          <div className="absolute inset-0 w-14 h-14 rounded-full bg-[#25D366]/10 animate-pulse"></div>
+          
+          <div className="relative w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer animate-bounce-gentle">
+            <img src={whatsappIcon} alt="WhatsApp" className="w-14 h-14 drop-shadow-lg" />
           </div>
           
           {showTooltip && !hasInteracted && (
