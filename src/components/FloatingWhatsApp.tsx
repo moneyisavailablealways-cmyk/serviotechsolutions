@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import whatsappIcon from "@/assets/whatsapp-official.png";
+import whatsappIcon from "@/assets/whatsapp-new.png";
 
 const FloatingWhatsApp = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
