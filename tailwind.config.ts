@@ -65,25 +65,47 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "bubble-1": {
+          "0%": { transform: "translate(25px, 25px) scale(0)", opacity: "1" },
+          "100%": { transform: "translate(-40px, -60px) scale(1)", opacity: "0" },
+        },
+        "bubble-2": {
+          "0%": { transform: "translate(25px, 25px) scale(0)", opacity: "1" },
+          "100%": { transform: "translate(50px, -50px) scale(1)", opacity: "0" },
+        },
+        "bubble-3": {
+          "0%": { transform: "translate(25px, 25px) scale(0)", opacity: "1" },
+          "100%": { transform: "translate(-50px, -30px) scale(1)", opacity: "0" },
+        },
+        "bubble-4": {
+          "0%": { transform: "translate(25px, 25px) scale(0)", opacity: "1" },
+          "100%": { transform: "translate(40px, -70px) scale(1)", opacity: "0" },
+        },
+        "bubble-5": {
+          "0%": { transform: "translate(25px, 25px) scale(0)", opacity: "1" },
+          "100%": { transform: "translate(-30px, -80px) scale(1)", opacity: "0" },
+        },
+        "bounce-gentle": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-5px)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "bubble-1": "bubble-1 2s ease-out infinite",
+        "bubble-2": "bubble-2 2.5s ease-out infinite 0.3s",
+        "bubble-3": "bubble-3 2.2s ease-out infinite 0.6s",
+        "bubble-4": "bubble-4 2.8s ease-out infinite 0.9s",
+        "bubble-5": "bubble-5 2.3s ease-out infinite 1.2s",
+        "bounce-gentle": "bounce-gentle 2s ease-in-out infinite",
       },
     },
   },
