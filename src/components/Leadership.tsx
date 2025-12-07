@@ -4,7 +4,12 @@ import geraldImg from "@/assets/gerald.png";
 import kevinImg from "@/assets/kevin.jpg";
 import brunoImg from "@/assets/bruno.jpg";
 import nicImg from "@/assets/nic.png";
+import useScrollAnimation from "@/hooks/use-scroll-animation";
+
 const Leadership = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: teamRef, isVisible: teamVisible } = useScrollAnimation();
+
   const teamMembers = [{
     name: "Gerald B",
     role: "Chief Executive Officer (CEO) & Chief Marketing Officer (CMO)",
@@ -30,17 +35,26 @@ const Leadership = () => {
     phones: ["0704972253"],
     description: "Sir Nic Omubedhe serves as the guiding force behind Servio Tech Solutions' growth and excellence. A seasoned leader with a wealth of experience, he is Manager at Success FM, CEO of Ronro Virtual University, CEO of Mubedhe Driving University, and Manager at Nyce TV. His mentorship brings wisdom, strategic insight, and professional guidance to the entire leadership team."
   }];
-  return <section id="leadership" className="py-20 bg-background">
+
+  return (
+    <section id="leadership" className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div 
+          ref={headerRef} 
+          className={`text-center mb-16 animate-fade-up ${headerVisible ? 'visible' : ''}`}
+        >
           <h2 className="text-4xl font-bold text-primary mb-4">Leadership Team</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Meet the visionary leaders driving innovation and excellence at Servio Tech Solutions
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {teamMembers.map((member, index) => <Card key={index} className="overflow-hidden hover:shadow-2xl transition-all duration-300 border-2 border-primary/60 hover:border-primary">
+        <div ref={teamRef} className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          {teamMembers.map((member, index) => (
+            <Card 
+              key={index} 
+              className={`overflow-hidden hover:shadow-2xl transition-all duration-300 border-2 border-primary/60 hover:border-primary animate-scale-up stagger-${index + 1} ${teamVisible ? 'visible' : ''}`}
+            >
               <div className="bg-gradient-to-br from-primary/10 to-accent/10 p-8 mx-0 my-0 py-0">
                 <div className="flex flex-col items-center text-center">
                   <div className="w-48 h-48 rounded-full overflow-hidden mb-6 shadow-lg">
@@ -49,19 +63,28 @@ const Leadership = () => {
                   <h2 className="text-2xl font-bold text-foreground mb-2">{member.name}</h2>
                   <p className="text-primary font-semibold mb-4">{member.role}</p>
                   <div className="flex flex-wrap gap-2 justify-center mb-4">
-                    {member.phones.map((phone, idx) => <a key={idx} href={`tel:${phone}`} className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-full hover:bg-primary/90 transition-colors">
+                    {member.phones.map((phone, idx) => (
+                      <a 
+                        key={idx} 
+                        href={`tel:${phone}`} 
+                        className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-full hover:bg-primary/90 transition-colors"
+                      >
                         <Phone className="w-4 h-4" />
                         {phone}
-                      </a>)}
+                      </a>
+                    ))}
                   </div>
                 </div>
               </div>
               <CardContent className="p-6">
                 <p className="text-muted-foreground leading-relaxed">{member.description}</p>
               </CardContent>
-            </Card>)}
+            </Card>
+          ))}
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default Leadership;

@@ -7,9 +7,14 @@ import { Label } from "@/components/ui/label";
 import { Mail, Phone, MapPin, CheckCircle2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import emailjs from "@emailjs/browser";
+import useScrollAnimation from "@/hooks/use-scroll-animation";
 
 const Contact = () => {
   const { toast } = useToast();
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: formRef, isVisible: formVisible } = useScrollAnimation();
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,7 +22,7 @@ const Contact = () => {
     message: ""
   });
 
-  const [loading, setLoading] = useState(false); // ✅ Loading state
+  const [loading, setLoading] = useState(false);
 
   const SERVICE_ID = "service_olg830h";
   const TEMPLATE_ID = "template_i5q67de";
@@ -26,10 +31,9 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true); // start loading
+    setLoading(true);
 
     try {
-      // Send message to you (main email)
       await emailjs.send(
         SERVICE_ID,
         TEMPLATE_ID,
@@ -42,22 +46,20 @@ const Contact = () => {
         PUBLIC_KEY
       );
 
-      // Try to send auto-reply to user (non-blocking). We pass multiple param aliases to match template vars.
       try {
         await emailjs.send(
           SERVICE_ID,
           AUTO_REPLY_TEMPLATE_ID,
           {
             from_name: formData.name,
-            to_email: formData.email, // common EmailJS var
-            reply_to: formData.email, // alternative var many templates use
-            user_email: formData.email, // extra alias if template expects this
+            to_email: formData.email,
+            reply_to: formData.email,
+            user_email: formData.email,
             to_name: formData.name
           },
           PUBLIC_KEY
         );
       } catch (autoReplyError) {
-        // Log but don't fail the form submission
         console.log("Auto-reply failed (non-critical):", autoReplyError);
       }
 
@@ -80,7 +82,7 @@ const Contact = () => {
         variant: "destructive"
       });
     } finally {
-      setLoading(false); // stop loading
+      setLoading(false);
     }
   };
 
@@ -103,15 +105,18 @@ const Contact = () => {
   return (
     <section id="contact" className="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div 
+          ref={headerRef} 
+          className={`text-center mb-16 animate-fade-up ${headerVisible ? 'visible' : ''}`}
+        >
           <h2 className="text-4xl font-bold text-primary mb-4">Get in Touch</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Ready to transform your business with cutting-edge technology? Let's discuss your project and explore how we can help you succeed.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          <div>
+        <div ref={formRef} className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <div className={`animate-fade-left ${formVisible ? 'visible' : ''}`}>
             <Card className="border-primary/20">
               <CardHeader>
                 <CardTitle className="text-2xl text-primary">Send us a message</CardTitle>
@@ -136,15 +141,14 @@ const Contact = () => {
                     <Textarea id="message" name="message" value={formData.message} onChange={handleChange} placeholder="Tell us about your project, timeline, and any specific requirements..." required rows={5} className="mt-1" />
                   </div>
                   <Button type="submit" className="w-full bg-primary hover:bg-primary/90" size="lg" disabled={loading}>
-                    {loading ? "Sending..." : "Send Message"} {/* ✅ Loading feedback */}
+                    {loading ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </CardContent>
             </Card>
           </div>
 
-          {/* The rest of your component remains unchanged */}
-          <div className="space-y-6">
+          <div className={`space-y-6 animate-fade-right ${formVisible ? 'visible' : ''}`}>
             <Card className="border-primary/20">
               <CardHeader>
                 <CardTitle className="text-2xl text-primary">Let's connect</CardTitle>
@@ -178,7 +182,6 @@ const Contact = () => {
                     <p className="font-semibold">Office</p>
                     <p className="text-muted-foreground">Lwasa, near Paradis Motel, Munyonyo–Kampala</p>
 
-                    {/* Google Map Embed */}
                     <div className="mt-3 rounded-2xl overflow-hidden shadow-md">
                       <iframe
                         src="https://www.google.com/maps?q=Lwasa%20Salaama%20Kampala&output=embed"
@@ -213,7 +216,10 @@ const Contact = () => {
           </div>
         </div>
 
-        <div className="text-center mt-16">
+        <div 
+          ref={ctaRef} 
+          className={`text-center mt-16 animate-fade-up ${ctaVisible ? 'visible' : ''}`}
+        >
           <h3 className="text-2xl font-bold text-primary mb-4">Ready to Start Your Project?</h3>
           <p className="text-muted-foreground mb-6">
             Schedule a free consultation call to discuss your project requirements and get a detailed estimate.
