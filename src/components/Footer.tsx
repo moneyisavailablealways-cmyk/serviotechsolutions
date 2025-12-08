@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 import logo from "@/assets/logo.jpg";
-import { Facebook, Instagram, Linkedin, Youtube, MessageCircle, Send } from "lucide-react"; // Added Music icon
+import { Facebook, Instagram, Linkedin, Youtube, MessageCircle, Send, Settings } from "lucide-react";
 const TikTokIcon = (props) => (
   <svg
     {...props}
@@ -115,9 +116,13 @@ const Footer = () => {
                 </a>
               ))}
             </div>
-            <div className="flex gap-4 text-sm">
+            <div className="flex gap-4 text-sm items-center">
               <a href="#" className="text-background/70 hover:text-secondary transition-colors">Privacy Policy</a>
               <a href="#" className="text-background/70 hover:text-secondary transition-colors">Terms of Service</a>
+              <Link to="/settings" className="text-background/70 hover:text-secondary transition-colors flex items-center gap-1">
+                <Settings className="w-4 h-4" />
+                Settings
+              </Link>
             </div>
           </div>
         </div>
