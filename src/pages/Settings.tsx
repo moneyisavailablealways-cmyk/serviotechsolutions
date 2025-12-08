@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, Bell, Moon, Globe, Shield } from "lucide-react";
+import { ArrowLeft, Bell, Moon, Globe, Shield, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { useSettings } from "@/hooks/use-settings";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useSettings, languages, Language } from "@/hooks/use-settings";
 import { useToast } from "@/hooks/use-toast";
 
 const Settings = () => {
@@ -109,9 +115,39 @@ const Settings = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="font-medium">Language</p>
-                  <p className="text-sm text-muted-foreground">English (US)</p>
+                  <p className="text-sm text-muted-foreground">Select your preferred language</p>
                 </div>
-                <Button variant="outline" size="sm">Change</Button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" size="sm" className="gap-2 min-w-[160px] justify-between">
+                      <span className="flex items-center gap-2">
+                        <span>{languages.find(l => l.value === settings.language)?.flag}</span>
+                        <span>{languages.find(l => l.value === settings.language)?.label}</span>
+                      </span>
+                      <ChevronDown className="w-4 h-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="bg-background border border-border z-50">
+                    {languages.map((lang) => (
+                      <DropdownMenuItem
+                        key={lang.value}
+                        onClick={() => {
+                          updateSetting("language", lang.value);
+                          toast({
+                            title: "Language Updated",
+                            description: `Language changed to ${lang.label}.`,
+                          });
+                        }}
+                        className={`flex items-center gap-2 cursor-pointer ${
+                          settings.language === lang.value ? "bg-primary/10" : ""
+                        }`}
+                      >
+                        <span>{lang.flag}</span>
+                        <span>{lang.label}</span>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
             </CardContent>
           </Card>

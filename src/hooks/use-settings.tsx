@@ -1,10 +1,22 @@
 import { useState, useEffect, createContext, useContext, ReactNode } from "react";
 
+export type Language = "en" | "es" | "fr" | "de" | "sw" | "ar";
+
+export const languages: { value: Language; label: string; flag: string }[] = [
+  { value: "en", label: "English (US)", flag: "🇺🇸" },
+  { value: "es", label: "Español", flag: "🇪🇸" },
+  { value: "fr", label: "Français", flag: "🇫🇷" },
+  { value: "de", label: "Deutsch", flag: "🇩🇪" },
+  { value: "sw", label: "Kiswahili", flag: "🇰🇪" },
+  { value: "ar", label: "العربية", flag: "🇸🇦" },
+];
+
 interface Settings {
   emailNotifications: boolean;
   marketingEmails: boolean;
   darkMode: boolean;
   analytics: boolean;
+  language: Language;
 }
 
 interface SettingsContextType {
@@ -17,6 +29,7 @@ const defaultSettings: Settings = {
   marketingEmails: false,
   darkMode: false,
   analytics: true,
+  language: "en",
 };
 
 const SettingsContext = createContext<SettingsContextType | undefined>(undefined);
