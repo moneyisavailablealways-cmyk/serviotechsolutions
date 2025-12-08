@@ -1,10 +1,27 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, Bell, Moon, Globe, Shield, User } from "lucide-react";
+import { ArrowLeft, Bell, Moon, Globe, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useSettings } from "@/hooks/use-settings";
+import { useToast } from "@/hooks/use-toast";
 
 const Settings = () => {
+  const { settings, updateSetting } = useSettings();
+  const { toast } = useToast();
+
+  const handleSettingChange = <K extends keyof typeof settings>(
+    key: K,
+    value: typeof settings[K],
+    label: string
+  ) => {
+    updateSetting(key, value);
+    toast({
+      title: "Settings Updated",
+      description: `${label} has been ${value ? "enabled" : "disabled"}.`,
+    });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
@@ -34,14 +51,24 @@ const Settings = () => {
                   <p className="font-medium">Email Notifications</p>
                   <p className="text-sm text-muted-foreground">Receive updates via email</p>
                 </div>
-                <Switch />
+                <Switch
+                  checked={settings.emailNotifications}
+                  onCheckedChange={(checked) =>
+                    handleSettingChange("emailNotifications", checked, "Email Notifications")
+                  }
+                />
               </div>
               <div className="flex items-center justify-between">
                 <div>
                   <p className="font-medium">Marketing Emails</p>
                   <p className="text-sm text-muted-foreground">Receive promotional content</p>
                 </div>
-                <Switch />
+                <Switch
+                  checked={settings.marketingEmails}
+                  onCheckedChange={(checked) =>
+                    handleSettingChange("marketingEmails", checked, "Marketing Emails")
+                  }
+                />
               </div>
             </CardContent>
           </Card>
@@ -60,7 +87,12 @@ const Settings = () => {
                   <p className="font-medium">Dark Mode</p>
                   <p className="text-sm text-muted-foreground">Use dark theme</p>
                 </div>
-                <Switch />
+                <Switch
+                  checked={settings.darkMode}
+                  onCheckedChange={(checked) =>
+                    handleSettingChange("darkMode", checked, "Dark Mode")
+                  }
+                />
               </div>
             </CardContent>
           </Card>
@@ -98,7 +130,12 @@ const Settings = () => {
                   <p className="font-medium">Analytics</p>
                   <p className="text-sm text-muted-foreground">Help improve our services</p>
                 </div>
-                <Switch defaultChecked />
+                <Switch
+                  checked={settings.analytics}
+                  onCheckedChange={(checked) =>
+                    handleSettingChange("analytics", checked, "Analytics")
+                  }
+                />
               </div>
             </CardContent>
           </Card>
