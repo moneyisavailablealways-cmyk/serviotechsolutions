@@ -8,9 +8,11 @@ import { Mail, Phone, MapPin, CheckCircle2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import emailjs from "@emailjs/browser";
 import useScrollAnimation from "@/hooks/use-scroll-animation";
+import { useTranslations } from "@/hooks/use-translations";
 
 const Contact = () => {
   const { toast } = useToast();
+  const t = useTranslations();
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
   const { ref: formRef, isVisible: formVisible } = useScrollAnimation();
   const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation();
@@ -64,8 +66,8 @@ const Contact = () => {
       }
 
       toast({
-        title: "Message Sent!",
-        description: "We'll get back to you as soon as possible."
+        title: t.messageSent,
+        description: t.messageSuccess
       });
 
       setFormData({
@@ -77,8 +79,8 @@ const Contact = () => {
     } catch (error) {
       console.error("EmailJS error:", error);
       toast({
-        title: "Failed to Send Message",
-        description: "Something went wrong. Please try again later.",
+        title: t.messageFailed,
+        description: t.messageError,
         variant: "destructive"
       });
     } finally {
@@ -109,9 +111,9 @@ const Contact = () => {
           ref={headerRef} 
           className={`text-center mb-16 animate-fade-up ${headerVisible ? 'visible' : ''}`}
         >
-          <h2 className="text-4xl font-bold text-primary mb-4">Get in Touch</h2>
+          <h2 className="text-4xl font-bold text-primary mb-4">{t.getInTouchTitle}</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Ready to transform your business with cutting-edge technology? Let's discuss your project and explore how we can help you succeed.
+            {t.contactSubtitle}
           </p>
         </div>
 
@@ -119,29 +121,29 @@ const Contact = () => {
           <div className={`animate-fade-left ${formVisible ? 'visible' : ''}`}>
             <Card className="border-primary/20">
               <CardHeader>
-                <CardTitle className="text-2xl text-primary">Send us a message</CardTitle>
-                <CardDescription>Fill out the form below and we'll get back to you shortly</CardDescription>
+                <CardTitle className="text-2xl text-primary">{t.sendMessage}</CardTitle>
+                <CardDescription>{t.formSubtitle}</CardDescription>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <Label htmlFor="name">Full Name *</Label>
+                    <Label htmlFor="name">{t.fullName} *</Label>
                     <Input id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Your name" required className="mt-1" />
                   </div>
                   <div>
-                    <Label htmlFor="email">Email Address *</Label>
+                    <Label htmlFor="email">{t.emailAddress} *</Label>
                     <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} placeholder="yourname@company.com" required className="mt-1" />
                   </div>
                   <div>
-                    <Label htmlFor="company">Company Name</Label>
+                    <Label htmlFor="company">{t.companyName}</Label>
                     <Input id="company" name="company" value={formData.company} onChange={handleChange} placeholder="Your Company" className="mt-1" />
                   </div>
                   <div>
-                    <Label htmlFor="message">Project Details *</Label>
+                    <Label htmlFor="message">{t.projectDetails} *</Label>
                     <Textarea id="message" name="message" value={formData.message} onChange={handleChange} placeholder="Tell us about your project, timeline, and any specific requirements..." required rows={5} className="mt-1" />
                   </div>
                   <Button type="submit" className="w-full bg-primary hover:bg-primary/90" size="lg" disabled={loading}>
-                    {loading ? "Sending..." : "Send Message"}
+                    {loading ? t.sending : t.send}
                   </Button>
                 </form>
               </CardContent>
@@ -151,7 +153,7 @@ const Contact = () => {
           <div className={`space-y-6 animate-fade-right ${formVisible ? 'visible' : ''}`}>
             <Card className="border-primary/20">
               <CardHeader>
-                <CardTitle className="text-2xl text-primary">Let's connect</CardTitle>
+                <CardTitle className="text-2xl text-primary">{t.letsConnect}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center gap-4">
@@ -159,7 +161,7 @@ const Contact = () => {
                     <Mail className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <p className="font-semibold">Email</p>
+                    <p className="font-semibold">{t.email}</p>
                     <p className="text-muted-foreground">serviotechsolutions@gmail.com</p>
                   </div>
                 </div>
@@ -169,7 +171,7 @@ const Contact = () => {
                     <Phone className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <p className="font-semibold">Phone</p>
+                    <p className="font-semibold">{t.phone}</p>
                     <p className="text-muted-foreground">+256 705-466-283</p>
                   </div>
                 </div>
@@ -179,7 +181,7 @@ const Contact = () => {
                     <MapPin className="w-6 h-6 text-primary" />
                   </div>
                   <div className="flex-1">
-                    <p className="font-semibold">Office</p>
+                    <p className="font-semibold">{t.office}</p>
                     <p className="text-muted-foreground">Lwasa, near Paradis Motel, Munyonyo–Kampala</p>
 
                     <div className="mt-3 rounded-2xl overflow-hidden shadow-md">
@@ -200,7 +202,7 @@ const Contact = () => {
           
             <Card className="border-primary/20 bg-primary text-white">
               <CardHeader>
-                <CardTitle className="text-2xl">Why work with us?</CardTitle>
+                <CardTitle className="text-2xl">{t.whyWorkWithUs}</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
@@ -220,9 +222,9 @@ const Contact = () => {
           ref={ctaRef} 
           className={`text-center mt-16 animate-fade-up ${ctaVisible ? 'visible' : ''}`}
         >
-          <h3 className="text-2xl font-bold text-primary mb-4">Ready to Start Your Project?</h3>
+          <h3 className="text-2xl font-bold text-primary mb-4">{t.readyToStart}</h3>
           <p className="text-muted-foreground mb-6">
-            Schedule a free consultation call to discuss your project requirements and get a detailed estimate.
+            {t.readyToStartSubtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
@@ -230,7 +232,7 @@ const Contact = () => {
               className="bg-secondary text-secondary-foreground hover:bg-secondary/90"
               onClick={() => window.open('https://wa.me/256705466283?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20consultation%20to%20discuss%20my%20project.', '_blank')}
             >
-              Schedule Consultation
+              {t.scheduleConsultation}
             </Button>
             <Button 
               size="lg" 
@@ -238,7 +240,7 @@ const Contact = () => {
               className="border-primary text-primary hover:bg-primary hover:text-white"
               onClick={() => window.location.href = 'tel:+256705466283'}
             >
-              Call Now
+              {t.callNow}
             </Button>
           </div>
         </div>

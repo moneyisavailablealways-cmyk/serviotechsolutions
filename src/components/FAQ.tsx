@@ -5,8 +5,10 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import useScrollAnimation from "@/hooks/use-scroll-animation";
+import { useTranslations } from "@/hooks/use-translations";
 
 const FAQ = () => {
+  const t = useTranslations();
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
   const { ref: accordionRef, isVisible: accordionVisible } = useScrollAnimation();
 
@@ -52,9 +54,9 @@ const FAQ = () => {
           ref={headerRef}
           className={`text-center mb-12 animate-fade-up ${headerVisible ? 'visible' : ''}`}
         >
-          <h2 className="text-4xl font-bold text-primary mb-4">Frequently Asked Questions</h2>
+          <h2 className="text-4xl font-bold text-primary mb-4">{t.faq}</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Find answers to common questions about our services, process, and how we can help your business grow
+            {t.faqSubtitle}
           </p>
         </div>
 

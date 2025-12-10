@@ -9,12 +9,14 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useSettings, languages, Language } from "@/hooks/use-settings";
+import { useSettings, languages } from "@/hooks/use-settings";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslations } from "@/hooks/use-translations";
 
 const Settings = () => {
   const { settings, updateSetting } = useSettings();
   const { toast } = useToast();
+  const t = useTranslations();
 
   const handleSettingChange = <K extends keyof typeof settings>(
     key: K,
@@ -23,8 +25,8 @@ const Settings = () => {
   ) => {
     updateSetting(key, value);
     toast({
-      title: "Settings Updated",
-      description: `${label} has been ${value ? "enabled" : "disabled"}.`,
+      title: t.settingsUpdated,
+      description: `${label} ${value ? t.enabled : t.disabled}.`,
     });
   };
 
@@ -35,11 +37,11 @@ const Settings = () => {
           <Link to="/">
             <Button variant="ghost" className="gap-2 mb-4">
               <ArrowLeft className="w-4 h-4" />
-              Back to Home
+              {t.backToHome}
             </Button>
           </Link>
-          <h1 className="text-3xl font-bold text-primary">Settings</h1>
-          <p className="text-muted-foreground mt-2">Manage your preferences and account settings</p>
+          <h1 className="text-3xl font-bold text-primary">{t.settingsTitle}</h1>
+          <p className="text-muted-foreground mt-2">{t.settingsSubtitle}</p>
         </div>
 
         <div className="grid gap-6 max-w-2xl">
@@ -47,32 +49,32 @@ const Settings = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Bell className="w-5 h-5 text-primary" />
-                Notifications
+                {t.notifications}
               </CardTitle>
-              <CardDescription>Configure how you receive notifications</CardDescription>
+              <CardDescription>{t.notificationsDesc}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium">Email Notifications</p>
-                  <p className="text-sm text-muted-foreground">Receive updates via email</p>
+                  <p className="font-medium">{t.emailNotifications}</p>
+                  <p className="text-sm text-muted-foreground">{t.emailNotificationsDesc}</p>
                 </div>
                 <Switch
                   checked={settings.emailNotifications}
                   onCheckedChange={(checked) =>
-                    handleSettingChange("emailNotifications", checked, "Email Notifications")
+                    handleSettingChange("emailNotifications", checked, t.emailNotifications)
                   }
                 />
               </div>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium">Marketing Emails</p>
-                  <p className="text-sm text-muted-foreground">Receive promotional content</p>
+                  <p className="font-medium">{t.marketingEmails}</p>
+                  <p className="text-sm text-muted-foreground">{t.marketingEmailsDesc}</p>
                 </div>
                 <Switch
                   checked={settings.marketingEmails}
                   onCheckedChange={(checked) =>
-                    handleSettingChange("marketingEmails", checked, "Marketing Emails")
+                    handleSettingChange("marketingEmails", checked, t.marketingEmails)
                   }
                 />
               </div>
@@ -83,20 +85,20 @@ const Settings = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Moon className="w-5 h-5 text-primary" />
-                Appearance
+                {t.appearance}
               </CardTitle>
-              <CardDescription>Customize the look and feel</CardDescription>
+              <CardDescription>{t.appearanceDesc}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium">Dark Mode</p>
-                  <p className="text-sm text-muted-foreground">Use dark theme</p>
+                  <p className="font-medium">{t.darkMode}</p>
+                  <p className="text-sm text-muted-foreground">{t.darkModeDesc}</p>
                 </div>
                 <Switch
                   checked={settings.darkMode}
                   onCheckedChange={(checked) =>
-                    handleSettingChange("darkMode", checked, "Dark Mode")
+                    handleSettingChange("darkMode", checked, t.darkMode)
                   }
                 />
               </div>
@@ -107,15 +109,15 @@ const Settings = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Globe className="w-5 h-5 text-primary" />
-                Language & Region
+                {t.languageRegion}
               </CardTitle>
-              <CardDescription>Set your preferred language and region</CardDescription>
+              <CardDescription>{t.languageRegionDesc}</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium">Language</p>
-                  <p className="text-sm text-muted-foreground">Select your preferred language</p>
+                  <p className="font-medium">{t.language}</p>
+                  <p className="text-sm text-muted-foreground">{t.languageDesc}</p>
                 </div>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
@@ -134,8 +136,8 @@ const Settings = () => {
                         onClick={() => {
                           updateSetting("language", lang.value);
                           toast({
-                            title: "Language Updated",
-                            description: `Language changed to ${lang.label}.`,
+                            title: t.languageUpdated,
+                            description: `${t.languageChangedTo} ${lang.label}.`,
                           });
                         }}
                         className={`flex items-center gap-2 cursor-pointer ${
@@ -156,20 +158,20 @@ const Settings = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Shield className="w-5 h-5 text-primary" />
-                Privacy
+                {t.privacy}
               </CardTitle>
-              <CardDescription>Manage your privacy settings</CardDescription>
+              <CardDescription>{t.privacyDesc}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium">Analytics</p>
-                  <p className="text-sm text-muted-foreground">Help improve our services</p>
+                  <p className="font-medium">{t.analytics}</p>
+                  <p className="text-sm text-muted-foreground">{t.analyticsDesc}</p>
                 </div>
                 <Switch
                   checked={settings.analytics}
                   onCheckedChange={(checked) =>
-                    handleSettingChange("analytics", checked, "Analytics")
+                    handleSettingChange("analytics", checked, t.analytics)
                   }
                 />
               </div>

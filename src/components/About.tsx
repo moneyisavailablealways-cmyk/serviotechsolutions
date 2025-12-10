@@ -1,28 +1,30 @@
 import { Target, Eye, Lightbulb, Award, Users, TrendingUp } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import useScrollAnimation from "@/hooks/use-scroll-animation";
+import { useTranslations } from "@/hooks/use-translations";
 
 const About = () => {
+  const t = useTranslations();
   const { ref: introRef, isVisible: introVisible } = useScrollAnimation();
   const { ref: cardsRef, isVisible: cardsVisible } = useScrollAnimation();
   const { ref: valuesRef, isVisible: valuesVisible } = useScrollAnimation();
 
   const values = [{
     icon: Lightbulb,
-    title: "Innovation",
-    description: "We embrace cutting-edge technology to deliver cutting-edge solutions"
+    title: t.innovation,
+    description: t.innovationDesc
   }, {
     icon: Award,
-    title: "Excellence",
-    description: "We maintain the highest standards of quality in everything we do"
+    title: t.excellence,
+    description: t.excellenceDesc
   }, {
     icon: Users,
-    title: "Collaboration",
-    description: "We work closely with our clients to ensure success"
+    title: t.collaboration,
+    description: t.collaborationDesc
   }, {
     icon: TrendingUp,
-    title: "Transparency",
-    description: "We believe in open communication and honest progress updates"
+    title: t.transparency,
+    description: t.transparencyDesc
   }];
 
   return (
@@ -33,10 +35,10 @@ const About = () => {
           className={`max-w-4xl mx-auto mb-16 animate-on-scroll ${introVisible ? 'visible' : ''}`}
         >
           <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-            Founded in 2022, Servio Tech Solutions has emerged from a simple belief that technology should empower businesses to reach their full potential. Our founders, with years of combined experience in software development and business consulting, saw an opportunity to bridge the gap between business challenges and cutting-edge technology solutions.
+            {t.aboutIntro1}
           </p>
           <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-            We are technology partner for businesses across vast industries. We successfully delivered 60+ projects in various sectors, helping clients transform their ideas and business processes into digital solutions. Our clients trust us because we do not just write code; we understand business needs and create solutions designed to achieve tangible business goals.
+            {t.aboutIntro2}
           </p>
         </div>
 
@@ -47,10 +49,10 @@ const About = () => {
                 <div className="p-3 rounded-full bg-yellow-400">
                   <Target className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold text-primary">Our Mission</h3>
+                <h3 className="text-2xl font-bold text-primary">{t.ourMission}</h3>
               </div>
               <p className="text-muted-foreground">
-                To empower businesses with innovative technology solutions that drive growth, efficiency, and competitive advantage. We strive to be their trusted partners, providing cutting-edge software development services tailored to their unique needs.
+                {t.ourMissionText}
               </p>
             </CardContent>
           </Card>
@@ -61,10 +63,10 @@ const About = () => {
                 <div className="p-3 rounded-full bg-amber-400">
                   <Eye className="w-8 h-8 text-secondary-foreground" />
                 </div>
-                <h3 className="text-2xl font-bold text-primary">Our Vision</h3>
+                <h3 className="text-2xl font-bold text-primary">{t.ourVision}</h3>
               </div>
               <p className="text-muted-foreground">
-                To be the leading technology partner for businesses seeking to harness the power of innovation and digital transformation. We aim to create lasting success for our clients by delivering exceptional results.
+                {t.ourVisionText}
               </p>
             </CardContent>
           </Card>
@@ -72,7 +74,7 @@ const About = () => {
 
         <div ref={valuesRef}>
           <h3 className={`text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 text-primary animate-fade-up ${valuesVisible ? 'visible' : ''}`}>
-            Our Core Values
+            {t.ourCoreValues}
           </h3>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {values.map((value, index) => (
