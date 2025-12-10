@@ -1,30 +1,32 @@
 import { Code, Globe, Smartphone, HeadphonesIcon } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import useScrollAnimation from "@/hooks/use-scroll-animation";
+import { useTranslations } from "@/hooks/use-translations";
 
 const Services = () => {
+  const t = useTranslations();
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
   const { ref: cardsRef, isVisible: cardsVisible } = useScrollAnimation();
 
   const services = [{
     icon: Code,
-    title: "Custom Software Development",
-    description: "Tailored software solutions built from scratch, aligned with your specific business requirements and goals.",
+    title: t.customSoftware,
+    description: t.customSoftwareDesc,
     features: ["Enterprise applications", "Business process automation", "Legacy system modernization", "API development & integration"]
   }, {
     icon: Globe,
-    title: "Web Development",
-    description: "Create stunning, high-performance websites that provide exceptional user experience across all devices and platforms.",
+    title: t.webDevelopment,
+    description: t.webDevelopmentDesc,
     features: ["Responsive web applications", "E-commerce solutions", "Content Management Systems", "Progressive Web Apps (PWAs)"]
   }, {
     icon: Smartphone,
-    title: "Mobile App Development",
-    description: "Build powerful, user-friendly mobile applications that engage users and drive business growth.",
+    title: t.mobileApp,
+    description: t.mobileAppDesc,
     features: ["iOS and Android development", "Cross-platform solutions", "Mobile app design & UX", "App Store optimization"]
   }, {
     icon: HeadphonesIcon,
-    title: "Consulting & Support",
-    description: "Expert guidance and ongoing support to help you make informed technology decisions and maintain your solutions.",
+    title: t.consultingSupport,
+    description: t.consultingSupportDesc,
     features: ["Technology consulting", "Project management", "Security audits", "24/7 technical support"]
   }];
 
@@ -35,9 +37,9 @@ const Services = () => {
           ref={headerRef} 
           className={`text-center mb-16 animate-fade-up ${headerVisible ? 'visible' : ''}`}
         >
-          <h2 className="text-4xl font-bold text-primary mb-4">Our Services</h2>
+          <h2 className="text-4xl font-bold text-primary mb-4">{t.ourServices}</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Comprehensive technology solutions designed to accelerate your business growth and drive digital transformation
+            {t.servicesSubtitle}
           </p>
         </div>
 
@@ -55,7 +57,7 @@ const Services = () => {
                 <CardDescription className="text-xs sm:text-base font-bold hidden sm:block">{service.description}</CardDescription>
               </CardHeader>
               <CardContent className="p-3 pt-0 sm:p-6 sm:pt-0">
-                <p className="font-semibold mb-2 sm:mb-3 text-foreground text-xs sm:text-base">Key Features:</p>
+                <p className="font-semibold mb-2 sm:mb-3 text-foreground text-xs sm:text-base">{t.keyFeatures}</p>
                 <ul className="space-y-1 sm:space-y-2">
                   {service.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start">
