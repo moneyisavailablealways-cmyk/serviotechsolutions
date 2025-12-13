@@ -1,14 +1,16 @@
 import { Card, CardContent } from "@/components/ui/card";
 import useScrollAnimation from "@/hooks/use-scroll-animation";
+import { useTranslations } from "@/hooks/use-translations";
 
 const Stats = () => {
+  const t = useTranslations();
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
   const { ref: statsRef, isVisible: statsVisible } = useScrollAnimation();
 
   const stats = [
-    { value: "10+", label: "Projects Completed" },
-    { value: "98%", label: "Client Satisfaction" },
-    { value: "3+", label: "Years Experience" }
+    { value: "10+", label: t.projectsCompleted },
+    { value: "98%", label: t.clientSatisfaction },
+    { value: "3+", label: t.yearsExperience }
   ];
 
   return (
@@ -19,10 +21,10 @@ const Stats = () => {
           className={`text-center mb-8 sm:mb-12 animate-fade-up ${headerVisible ? 'visible' : ''}`}
         >
           <h2 className="text-2xl sm:text-3xl font-bold text-primary-foreground mb-3 sm:mb-4">
-            Why Choose Skyline Tech Solutions?
+            {t.whyChooseUs}
           </h2>
           <p className="text-primary-foreground/90 max-w-3xl mx-auto text-sm sm:text-base">
-            With a proven track record of delivering exceptional software solutions, we're the partner you can trust for your next technology project.
+            {t.statsSubtitle}
           </p>
         </div>
         <div ref={statsRef} className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-6 max-w-4xl mx-auto">

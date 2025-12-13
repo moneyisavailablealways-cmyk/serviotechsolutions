@@ -5,8 +5,10 @@ import kevinImg from "@/assets/kevin.jpg";
 import brunoImg from "@/assets/bruno.jpg";
 import nicImg from "@/assets/nic.png";
 import useScrollAnimation from "@/hooks/use-scroll-animation";
+import { useTranslations } from "@/hooks/use-translations";
 
 const Leadership = () => {
+  const t = useTranslations();
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
   const { ref: teamRef, isVisible: teamVisible } = useScrollAnimation();
 
@@ -43,9 +45,9 @@ const Leadership = () => {
           ref={headerRef} 
           className={`text-center mb-16 animate-fade-up ${headerVisible ? 'visible' : ''}`}
         >
-          <h2 className="text-4xl font-bold text-primary mb-4">Leadership Team</h2>
+          <h2 className="text-4xl font-bold text-primary mb-4">{t.leadershipTitle}</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Meet the visionary leaders driving innovation and excellence at Servio Tech Solutions
+            {t.leadershipSubtitle}
           </p>
         </div>
 

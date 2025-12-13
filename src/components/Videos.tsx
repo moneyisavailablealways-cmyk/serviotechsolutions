@@ -10,10 +10,12 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
+import { useTranslations } from "@/hooks/use-translations";
 
 const categories = ["All", "Company", "Services", "Demo", "Testimonials"] as const;
 
 const Videos = () => {
+  const t = useTranslations();
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [api, setApi] = useState<CarouselApi>();
   const [autoplay, setAutoplay] = useState(true);
@@ -166,9 +168,9 @@ const Videos = () => {
     <section id="videos" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl font-bold mb-4">Video Resources</h2>
+          <h2 className="text-4xl font-bold mb-4">{t.videoResources}</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg mb-8">
-            Watch our videos to learn more about our services, see our work in action, and hear from our team and clients.
+            {t.videosSubtitle}
           </p>
           <div className="flex flex-wrap justify-center gap-2">
             {categories.map((category) => (
@@ -181,7 +183,7 @@ const Videos = () => {
                     : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
                 }`}
               >
-                {category}
+                {category === "All" ? t.all : category === "Company" ? t.company : category === "Services" ? t.services : category === "Demo" ? t.demo : t.testimonials}
               </button>
             ))}
           </div>
@@ -215,7 +217,7 @@ const Videos = () => {
               />
             </Carousel>
           ) : (
-            <p className="text-center text-muted-foreground">No videos in this category.</p>
+            <p className="text-center text-muted-foreground">{t.noVideosInCategory}</p>
           )}
           {/* Dot Indicators */}
           {filteredVideos.length > 1 && (
@@ -244,7 +246,7 @@ const Videos = () => {
           {filteredVideos.length > 0 ? (
             filteredVideos.map((video, index) => renderVideoCard(video, index))
           ) : (
-            <p className="col-span-full text-center text-muted-foreground">No videos in this category.</p>
+            <p className="col-span-full text-center text-muted-foreground">{t.noVideosInCategory}</p>
           )}
         </div>
       </div>

@@ -9,8 +9,10 @@ import reportCardImage from "@/assets/portfolio-reportcard.jpg";
 import academyImage from "@/assets/portfolio-academy.jpg";
 import bankingImage from "@/assets/portfolio-banking.jpg";
 import healthcareImage from "@/assets/portfolio-healthcare.jpg";
+import { useTranslations } from "@/hooks/use-translations";
 
 const Portfolio = () => {
+  const t = useTranslations();
   const [api, setApi] = useState<CarouselApi>();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [autoplay, setAutoplay] = useState(true);
@@ -95,9 +97,9 @@ const Portfolio = () => {
     <section id="portfolio" className="py-20 bg-muted">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-primary mb-4">Our Portfolio</h2>
+          <h2 className="text-4xl font-bold text-primary mb-4">{t.ourPortfolio}</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Explore our recent projects and see how we've helped businesses transform their digital presence
+            {t.portfolioSubtitle}
           </p>
         </div>
 
@@ -126,7 +128,7 @@ const Portfolio = () => {
                     <CardDescription className="text-base">{project.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <p className="font-semibold mb-3 text-foreground">Technologies Used:</p>
+                    <p className="font-semibold mb-3 text-foreground">{t.technologiesUsed}</p>
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.technologies.map((tech, idx) => (
                         <Badge key={idx} variant="secondary" className="bg-secondary/20 text-foreground">
@@ -136,7 +138,7 @@ const Portfolio = () => {
                     </div>
                     <Button variant="outline" className="w-full border-primary text-primary hover:bg-primary hover:text-white">
                       <a href={project.liveUrl} className="btn-primary flex-1 text-center">
-                        <ExternalLink className="w-4 h-4 mr-2 inline" />View Live</a>
+                        <ExternalLink className="w-4 h-4 mr-2 inline" />{t.viewLive}</a>
                     </Button>
                   </CardContent>
                 </Card>

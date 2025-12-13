@@ -1,35 +1,37 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Lightbulb, Calendar, Code, TestTube, Rocket, Headphones } from "lucide-react";
 import useScrollAnimation from "@/hooks/use-scroll-animation";
+import { useTranslations } from "@/hooks/use-translations";
 
 const Process = () => {
+  const t = useTranslations();
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
   const { ref: stepsRef, isVisible: stepsVisible } = useScrollAnimation();
 
   const steps = [{
     icon: Lightbulb,
-    title: "Discovery",
-    description: "We understand your business needs and project goals"
+    title: t.discovery,
+    description: t.discoveryDesc
   }, {
     icon: Calendar,
-    title: "Planning",
-    description: "Strategic roadmap and timeline development"
+    title: t.planning,
+    description: t.planningDesc
   }, {
     icon: Code,
-    title: "Development",
-    description: "Agile development with continuous integration"
+    title: t.development,
+    description: t.developmentDesc
   }, {
     icon: TestTube,
-    title: "Testing",
-    description: "Comprehensive quality assurance and testing"
+    title: t.testing,
+    description: t.testingDesc
   }, {
     icon: Rocket,
-    title: "Deployment",
-    description: "Smooth launch and production deployment"
+    title: t.deployment,
+    description: t.deploymentDesc
   }, {
     icon: Headphones,
-    title: "Support",
-    description: "Ongoing maintenance and technical support"
+    title: t.support,
+    description: t.supportDesc
   }];
 
   return (
@@ -39,9 +41,9 @@ const Process = () => {
           ref={headerRef} 
           className={`text-center mb-16 animate-fade-up ${headerVisible ? 'visible' : ''}`}
         >
-          <h2 className="text-4xl font-bold text-primary mb-4">Our Development Process</h2>
+          <h2 className="text-4xl font-bold text-primary mb-4">{t.ourDevelopmentProcess}</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            A proven methodology that ensures quality, efficiency, and success
+            {t.processSubtitle}
           </p>
         </div>
 
