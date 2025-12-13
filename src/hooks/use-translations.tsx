@@ -113,6 +113,48 @@ type TranslationKeys = {
   disabled: string;
   languageUpdated: string;
   languageChangedTo: string;
+  
+  // Portfolio
+  ourPortfolio: string;
+  portfolioSubtitle: string;
+  technologiesUsed: string;
+  viewLive: string;
+  
+  // Videos
+  videoResources: string;
+  videosSubtitle: string;
+  all: string;
+  company: string;
+  demo: string;
+  testimonials: string;
+  noVideosInCategory: string;
+  
+  // Process
+  ourDevelopmentProcess: string;
+  processSubtitle: string;
+  discovery: string;
+  discoveryDesc: string;
+  planning: string;
+  planningDesc: string;
+  development: string;
+  developmentDesc: string;
+  testing: string;
+  testingDesc: string;
+  deployment: string;
+  deploymentDesc: string;
+  support: string;
+  supportDesc: string;
+  
+  // Stats
+  whyChooseUs: string;
+  statsSubtitle: string;
+  projectsCompleted: string;
+  clientSatisfaction: string;
+  yearsExperience: string;
+  
+  // Leadership
+  leadershipTitle: string;
+  leadershipSubtitle: string;
 };
 
 const translations: Record<Language, TranslationKeys> = {
@@ -229,6 +271,48 @@ const translations: Record<Language, TranslationKeys> = {
     disabled: "disabled",
     languageUpdated: "Language Updated",
     languageChangedTo: "Language changed to",
+    
+    // Portfolio
+    ourPortfolio: "Our Portfolio",
+    portfolioSubtitle: "Explore our recent projects and see how we've helped businesses transform their digital presence",
+    technologiesUsed: "Technologies Used:",
+    viewLive: "View Live",
+    
+    // Videos
+    videoResources: "Video Resources",
+    videosSubtitle: "Watch our videos to learn more about our services, see our work in action, and hear from our team and clients.",
+    all: "All",
+    company: "Company",
+    demo: "Demo",
+    testimonials: "Testimonials",
+    noVideosInCategory: "No videos in this category.",
+    
+    // Process
+    ourDevelopmentProcess: "Our Development Process",
+    processSubtitle: "A proven methodology that ensures quality, efficiency, and success",
+    discovery: "Discovery",
+    discoveryDesc: "We understand your business needs and project goals",
+    planning: "Planning",
+    planningDesc: "Strategic roadmap and timeline development",
+    development: "Development",
+    developmentDesc: "Agile development with continuous integration",
+    testing: "Testing",
+    testingDesc: "Comprehensive quality assurance and testing",
+    deployment: "Deployment",
+    deploymentDesc: "Smooth launch and production deployment",
+    support: "Support",
+    supportDesc: "Ongoing maintenance and technical support",
+    
+    // Stats
+    whyChooseUs: "Why Choose Skyline Tech Solutions?",
+    statsSubtitle: "With a proven track record of delivering exceptional software solutions, we're the partner you can trust for your next technology project.",
+    projectsCompleted: "Projects Completed",
+    clientSatisfaction: "Client Satisfaction",
+    yearsExperience: "Years Experience",
+    
+    // Leadership
+    leadershipTitle: "Leadership Team",
+    leadershipSubtitle: "Meet the visionary leaders driving innovation and excellence at Servio Tech Solutions",
   },
   
   es: {
@@ -329,6 +413,48 @@ const translations: Record<Language, TranslationKeys> = {
     disabled: "deshabilitado",
     languageUpdated: "Idioma Actualizado",
     languageChangedTo: "Idioma cambiado a",
+    
+    // Portfolio
+    ourPortfolio: "Nuestro Portafolio",
+    portfolioSubtitle: "Explore nuestros proyectos recientes y vea cómo hemos ayudado a las empresas a transformar su presencia digital",
+    technologiesUsed: "Tecnologías Utilizadas:",
+    viewLive: "Ver en Vivo",
+    
+    // Videos
+    videoResources: "Recursos de Video",
+    videosSubtitle: "Vea nuestros videos para conocer más sobre nuestros servicios, ver nuestro trabajo en acción y escuchar a nuestro equipo y clientes.",
+    all: "Todos",
+    company: "Empresa",
+    demo: "Demo",
+    testimonials: "Testimonios",
+    noVideosInCategory: "No hay videos en esta categoría.",
+    
+    // Process
+    ourDevelopmentProcess: "Nuestro Proceso de Desarrollo",
+    processSubtitle: "Una metodología probada que garantiza calidad, eficiencia y éxito",
+    discovery: "Descubrimiento",
+    discoveryDesc: "Entendemos las necesidades de su negocio y los objetivos del proyecto",
+    planning: "Planificación",
+    planningDesc: "Hoja de ruta estratégica y desarrollo de cronograma",
+    development: "Desarrollo",
+    developmentDesc: "Desarrollo ágil con integración continua",
+    testing: "Pruebas",
+    testingDesc: "Aseguramiento de calidad y pruebas exhaustivas",
+    deployment: "Implementación",
+    deploymentDesc: "Lanzamiento fluido y despliegue a producción",
+    support: "Soporte",
+    supportDesc: "Mantenimiento continuo y soporte técnico",
+    
+    // Stats
+    whyChooseUs: "¿Por Qué Elegirnos?",
+    statsSubtitle: "Con un historial comprobado de entregar soluciones de software excepcionales, somos el socio en quien puede confiar para su próximo proyecto tecnológico.",
+    projectsCompleted: "Proyectos Completados",
+    clientSatisfaction: "Satisfacción del Cliente",
+    yearsExperience: "Años de Experiencia",
+    
+    // Leadership
+    leadershipTitle: "Equipo Directivo",
+    leadershipSubtitle: "Conozca a los líderes visionarios que impulsan la innovación y la excelencia en Servio Tech Solutions",
   },
   
   fr: {
@@ -429,6 +555,48 @@ const translations: Record<Language, TranslationKeys> = {
     disabled: "désactivé",
     languageUpdated: "Langue Mise à Jour",
     languageChangedTo: "Langue changée en",
+    
+    // Portfolio
+    ourPortfolio: "Notre Portfolio",
+    portfolioSubtitle: "Explorez nos projets récents et découvrez comment nous avons aidé les entreprises à transformer leur présence numérique",
+    technologiesUsed: "Technologies Utilisées:",
+    viewLive: "Voir en Direct",
+    
+    // Videos
+    videoResources: "Ressources Vidéo",
+    videosSubtitle: "Regardez nos vidéos pour en savoir plus sur nos services, voir notre travail en action et écouter notre équipe et nos clients.",
+    all: "Tous",
+    company: "Entreprise",
+    demo: "Démo",
+    testimonials: "Témoignages",
+    noVideosInCategory: "Aucune vidéo dans cette catégorie.",
+    
+    // Process
+    ourDevelopmentProcess: "Notre Processus de Développement",
+    processSubtitle: "Une méthodologie éprouvée qui garantit qualité, efficacité et succès",
+    discovery: "Découverte",
+    discoveryDesc: "Nous comprenons vos besoins commerciaux et vos objectifs de projet",
+    planning: "Planification",
+    planningDesc: "Feuille de route stratégique et développement du calendrier",
+    development: "Développement",
+    developmentDesc: "Développement agile avec intégration continue",
+    testing: "Tests",
+    testingDesc: "Assurance qualité et tests complets",
+    deployment: "Déploiement",
+    deploymentDesc: "Lancement fluide et déploiement en production",
+    support: "Support",
+    supportDesc: "Maintenance continue et support technique",
+    
+    // Stats
+    whyChooseUs: "Pourquoi Nous Choisir?",
+    statsSubtitle: "Avec un historique prouvé de solutions logicielles exceptionnelles, nous sommes le partenaire de confiance pour votre prochain projet technologique.",
+    projectsCompleted: "Projets Réalisés",
+    clientSatisfaction: "Satisfaction Client",
+    yearsExperience: "Années d'Expérience",
+    
+    // Leadership
+    leadershipTitle: "Équipe de Direction",
+    leadershipSubtitle: "Rencontrez les leaders visionnaires qui stimulent l'innovation et l'excellence chez Servio Tech Solutions",
   },
   
   de: {
@@ -529,6 +697,48 @@ const translations: Record<Language, TranslationKeys> = {
     disabled: "deaktiviert",
     languageUpdated: "Sprache Aktualisiert",
     languageChangedTo: "Sprache geändert zu",
+    
+    // Portfolio
+    ourPortfolio: "Unser Portfolio",
+    portfolioSubtitle: "Entdecken Sie unsere neuesten Projekte und sehen Sie, wie wir Unternehmen bei der Transformation ihrer digitalen Präsenz geholfen haben",
+    technologiesUsed: "Verwendete Technologien:",
+    viewLive: "Live Ansehen",
+    
+    // Videos
+    videoResources: "Video-Ressourcen",
+    videosSubtitle: "Sehen Sie unsere Videos, um mehr über unsere Dienstleistungen zu erfahren, unsere Arbeit in Aktion zu sehen und von unserem Team und unseren Kunden zu hören.",
+    all: "Alle",
+    company: "Unternehmen",
+    demo: "Demo",
+    testimonials: "Referenzen",
+    noVideosInCategory: "Keine Videos in dieser Kategorie.",
+    
+    // Process
+    ourDevelopmentProcess: "Unser Entwicklungsprozess",
+    processSubtitle: "Eine bewährte Methodik, die Qualität, Effizienz und Erfolg garantiert",
+    discovery: "Entdeckung",
+    discoveryDesc: "Wir verstehen Ihre Geschäftsanforderungen und Projektziele",
+    planning: "Planung",
+    planningDesc: "Strategische Roadmap und Zeitplanentwicklung",
+    development: "Entwicklung",
+    developmentDesc: "Agile Entwicklung mit kontinuierlicher Integration",
+    testing: "Testen",
+    testingDesc: "Umfassende Qualitätssicherung und Tests",
+    deployment: "Bereitstellung",
+    deploymentDesc: "Reibungsloser Start und Produktionsbereitstellung",
+    support: "Support",
+    supportDesc: "Laufende Wartung und technischer Support",
+    
+    // Stats
+    whyChooseUs: "Warum Uns Wählen?",
+    statsSubtitle: "Mit einer nachgewiesenen Erfolgsbilanz bei der Bereitstellung außergewöhnlicher Softwarelösungen sind wir der Partner, dem Sie für Ihr nächstes Technologieprojekt vertrauen können.",
+    projectsCompleted: "Abgeschlossene Projekte",
+    clientSatisfaction: "Kundenzufriedenheit",
+    yearsExperience: "Jahre Erfahrung",
+    
+    // Leadership
+    leadershipTitle: "Führungsteam",
+    leadershipSubtitle: "Lernen Sie die visionären Führungskräfte kennen, die Innovation und Exzellenz bei Servio Tech Solutions vorantreiben",
   },
   
   sw: {
@@ -629,6 +839,48 @@ const translations: Record<Language, TranslationKeys> = {
     disabled: "imezimwa",
     languageUpdated: "Lugha Imesasishwa",
     languageChangedTo: "Lugha imebadilishwa kuwa",
+    
+    // Portfolio
+    ourPortfolio: "Kazi Zetu",
+    portfolioSubtitle: "Chunguza miradi yetu ya hivi karibuni na uone jinsi tulivyosaidia biashara kubadilisha uwepo wao wa kidijitali",
+    technologiesUsed: "Teknolojia Zilizotumika:",
+    viewLive: "Tazama Moja kwa Moja",
+    
+    // Videos
+    videoResources: "Rasilimali za Video",
+    videosSubtitle: "Tazama video zetu kujifunza zaidi kuhusu huduma zetu, kuona kazi yetu ikifanya kazi, na kusikia kutoka kwa timu yetu na wateja.",
+    all: "Zote",
+    company: "Kampuni",
+    demo: "Onyesho",
+    testimonials: "Ushuhuda",
+    noVideosInCategory: "Hakuna video katika kategoria hii.",
+    
+    // Process
+    ourDevelopmentProcess: "Mchakato Wetu wa Maendeleo",
+    processSubtitle: "Mbinu iliyothibitishwa inayohakikisha ubora, ufanisi, na mafanikio",
+    discovery: "Ugunduzi",
+    discoveryDesc: "Tunaelewa mahitaji ya biashara yako na malengo ya mradi",
+    planning: "Kupanga",
+    planningDesc: "Ramani ya kimkakati na maendeleo ya ratiba",
+    development: "Maendeleo",
+    developmentDesc: "Maendeleo ya haraka na ushirikiano wa kuendelea",
+    testing: "Upimaji",
+    testingDesc: "Uhakikisho wa ubora na upimaji wa kina",
+    deployment: "Usambazaji",
+    deploymentDesc: "Uzinduzi mzuri na usambazaji wa uzalishaji",
+    support: "Msaada",
+    supportDesc: "Matengenezo yanayoendelea na msaada wa kiufundi",
+    
+    // Stats
+    whyChooseUs: "Kwa Nini Utuchague?",
+    statsSubtitle: "Na rekodi iliyothibitishwa ya kutoa suluhisho za programu za kipekee, sisi ni mshirika unayoweza kumwamini kwa mradi wako ujao wa teknolojia.",
+    projectsCompleted: "Miradi Iliyokamilika",
+    clientSatisfaction: "Kuridhika kwa Mteja",
+    yearsExperience: "Miaka ya Uzoefu",
+    
+    // Leadership
+    leadershipTitle: "Timu ya Uongozi",
+    leadershipSubtitle: "Kutana na viongozi wenye maono wanaosukuma uvumbuzi na ubora katika Servio Tech Solutions",
   },
   
   ar: {
@@ -729,6 +981,48 @@ const translations: Record<Language, TranslationKeys> = {
     disabled: "معطل",
     languageUpdated: "تم تحديث اللغة",
     languageChangedTo: "تم تغيير اللغة إلى",
+    
+    // Portfolio
+    ourPortfolio: "أعمالنا",
+    portfolioSubtitle: "استكشف مشاريعنا الأخيرة وانظر كيف ساعدنا الشركات على تحويل حضورها الرقمي",
+    technologiesUsed: "التقنيات المستخدمة:",
+    viewLive: "عرض مباشر",
+    
+    // Videos
+    videoResources: "موارد الفيديو",
+    videosSubtitle: "شاهد مقاطع الفيديو الخاصة بنا لمعرفة المزيد عن خدماتنا ورؤية عملنا قيد التنفيذ والاستماع إلى فريقنا وعملائنا.",
+    all: "الكل",
+    company: "الشركة",
+    demo: "عرض توضيحي",
+    testimonials: "شهادات",
+    noVideosInCategory: "لا توجد مقاطع فيديو في هذه الفئة.",
+    
+    // Process
+    ourDevelopmentProcess: "عملية التطوير لدينا",
+    processSubtitle: "منهجية مثبتة تضمن الجودة والكفاءة والنجاح",
+    discovery: "الاكتشاف",
+    discoveryDesc: "نفهم احتياجات عملك وأهداف المشروع",
+    planning: "التخطيط",
+    planningDesc: "خارطة طريق استراتيجية وتطوير الجدول الزمني",
+    development: "التطوير",
+    developmentDesc: "تطوير مرن مع تكامل مستمر",
+    testing: "الاختبار",
+    testingDesc: "ضمان جودة شامل واختبار",
+    deployment: "النشر",
+    deploymentDesc: "إطلاق سلس ونشر الإنتاج",
+    support: "الدعم",
+    supportDesc: "صيانة مستمرة ودعم فني",
+    
+    // Stats
+    whyChooseUs: "لماذا تختارنا؟",
+    statsSubtitle: "مع سجل حافل من تقديم حلول برمجية استثنائية، نحن الشريك الذي يمكنك الوثوق به لمشروعك التكنولوجي القادم.",
+    projectsCompleted: "مشاريع مكتملة",
+    clientSatisfaction: "رضا العملاء",
+    yearsExperience: "سنوات الخبرة",
+    
+    // Leadership
+    leadershipTitle: "فريق القيادة",
+    leadershipSubtitle: "تعرف على القادة أصحاب الرؤية الذين يقودون الابتكار والتميز في سيرفيو تك سولوشنز",
   },
 };
 
