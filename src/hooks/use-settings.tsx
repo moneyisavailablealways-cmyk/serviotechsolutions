@@ -61,6 +61,16 @@ export const SettingsProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [settings.darkMode]);
 
+  useEffect(() => {
+    if (settings.language === "ar") {
+      document.documentElement.dir = "rtl";
+      document.documentElement.lang = "ar";
+    } else {
+      document.documentElement.dir = "ltr";
+      document.documentElement.lang = settings.language;
+    }
+  }, [settings.language]);
+
   const updateSetting = <K extends keyof Settings>(key: K, value: Settings[K]) => {
     setSettings((prev) => ({ ...prev, [key]: value }));
   };
