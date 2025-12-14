@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Settings } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.jpg";
 import { useTranslations } from "@/hooks/use-translations";
@@ -34,6 +35,9 @@ const Header = () => {
           <button onClick={() => scrollToSection("portfolio")} className="text-foreground hover:text-primary transition-colors">{t.portfolio}</button>
           <button onClick={() => scrollToSection("leadership")} className="text-foreground hover:text-primary transition-colors">{t.leadershipTeam}</button>
           <Button onClick={() => scrollToSection("contact")} className="bg-primary hover:bg-primary/90">{t.getInTouch}</Button>
+          <Link to="/settings" className="text-foreground hover:text-primary transition-colors">
+            <Settings size={20} />
+          </Link>
         </nav>
 
         <button className="md:hidden text-foreground" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -50,6 +54,10 @@ const Header = () => {
             <button onClick={() => scrollToSection("portfolio")} className="text-foreground hover:text-primary transition-colors text-left">{t.portfolio}</button>
             <button onClick={() => scrollToSection("leadership")} className="text-foreground hover:text-primary transition-colors text-left">{t.leadershipTeam}</button>
             <Button onClick={() => scrollToSection("contact")} className="bg-primary hover:bg-primary/90 w-full">{t.getInTouch}</Button>
+            <Link to="/settings" className="text-foreground hover:text-primary transition-colors flex items-center gap-2" onClick={() => setIsMenuOpen(false)}>
+              <Settings size={20} />
+              {t.settings}
+            </Link>
           </nav>
         </div>
       )}
