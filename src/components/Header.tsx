@@ -1,15 +1,25 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Settings } from "lucide-react";
+import { Menu, X, Settings, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import logo from "@/assets/logo.jpg";
 import { useTranslations } from "@/hooks/use-translations";
+import { useSettings, languages, Language } from "@/hooks/use-settings";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const t = useTranslations();
+  const { settings, updateSetting } = useSettings();
+
+  const currentLanguage = languages.find(l => l.value === settings.language);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +35,10 @@ const Header = () => {
       element.scrollIntoView({ behavior: "smooth" });
       setIsMenuOpen(false);
     }
+  };
+
+  const handleLanguageChange = (lang: Language) => {
+    updateSetting("language", lang);
   };
 
   return (
@@ -45,6 +59,28 @@ const Header = () => {
           <button onClick={() => scrollToSection("portfolio")} className="text-foreground hover:text-primary transition-all duration-300 hover:scale-105 relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">{t.portfolio}</button>
           <button onClick={() => scrollToSection("leadership")} className="text-foreground hover:text-primary transition-all duration-300 hover:scale-105 relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">{t.leadershipTeam}</button>
           <Button onClick={() => scrollToSection("contact")} className="bg-primary hover:bg-primary/90 transition-all duration-300 hover:scale-105 hover:shadow-lg">{t.getInTouch}</Button>
+          
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className="flex items-center gap-1.5 text-foreground hover:text-primary transition-all duration-300 hover:scale-105">
+                <Globe size={18} />
+                <span className="text-sm">{currentLanguage?.flag}</span>
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="bg-secondary border border-primary/20 z-[100]">
+              {languages.map((lang) => (
+                <DropdownMenuItem
+                  key={lang.value}
+                  onClick={() => handleLanguageChange(lang.value)}
+                  className={`cursor-pointer hover:bg-primary/10 ${settings.language === lang.value ? 'bg-primary/20 text-primary' : ''}`}
+                >
+                  <span className="mr-2">{lang.flag}</span>
+                  {lang.label}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -73,6 +109,28 @@ const Header = () => {
             <button onClick={() => scrollToSection("portfolio")} className="text-foreground hover:text-primary transition-colors text-left">{t.portfolio}</button>
             <button onClick={() => scrollToSection("leadership")} className="text-foreground hover:text-primary transition-colors text-left">{t.leadershipTeam}</button>
             <Button onClick={() => scrollToSection("contact")} className="bg-primary hover:bg-primary/90 w-full">{t.getInTouch}</Button>
+            
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center gap-2 text-foreground hover:text-primary transition-colors text-left">
+                  <Globe size={20} />
+                  <span>{currentLanguage?.flag} {currentLanguage?.label}</span>
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-secondary border border-primary/20 z-[100]">
+                {languages.map((lang) => (
+                  <DropdownMenuItem
+                    key={lang.value}
+                    onClick={() => handleLanguageChange(lang.value)}
+                    className={`cursor-pointer hover:bg-primary/10 ${settings.language === lang.value ? 'bg-primary/20 text-primary' : ''}`}
+                  >
+                    <span className="mr-2">{lang.flag}</span>
+                    {lang.label}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             <Link to="/settings" className="text-foreground hover:text-primary transition-colors flex items-center gap-2" onClick={() => setIsMenuOpen(false)}>
               <Settings size={20} />
               {t.settings}
