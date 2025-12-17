@@ -30,12 +30,12 @@ const Header = () => {
         </div>
 
         <nav className="hidden md:flex items-center gap-6">
-          <button onClick={() => scrollToSection("home")} className="text-foreground hover:text-primary transition-colors">{t.home}</button>
-          <button onClick={() => scrollToSection("about")} className="text-foreground hover:text-primary transition-colors">{t.about}</button>
-          <button onClick={() => scrollToSection("services")} className="text-foreground hover:text-primary transition-colors">{t.services}</button>
-          <button onClick={() => scrollToSection("portfolio")} className="text-foreground hover:text-primary transition-colors">{t.portfolio}</button>
-          <button onClick={() => scrollToSection("leadership")} className="text-foreground hover:text-primary transition-colors">{t.leadershipTeam}</button>
-          <Button onClick={() => scrollToSection("contact")} className="bg-primary hover:bg-primary/90">{t.getInTouch}</Button>
+          <button onClick={() => scrollToSection("home")} className="text-foreground hover:text-primary transition-all duration-300 hover:scale-105 relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">{t.home}</button>
+          <button onClick={() => scrollToSection("about")} className="text-foreground hover:text-primary transition-all duration-300 hover:scale-105 relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">{t.about}</button>
+          <button onClick={() => scrollToSection("services")} className="text-foreground hover:text-primary transition-all duration-300 hover:scale-105 relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">{t.services}</button>
+          <button onClick={() => scrollToSection("portfolio")} className="text-foreground hover:text-primary transition-all duration-300 hover:scale-105 relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">{t.portfolio}</button>
+          <button onClick={() => scrollToSection("leadership")} className="text-foreground hover:text-primary transition-all duration-300 hover:scale-105 relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">{t.leadershipTeam}</button>
+          <Button onClick={() => scrollToSection("contact")} className="bg-primary hover:bg-primary/90 transition-all duration-300 hover:scale-105 hover:shadow-lg">{t.getInTouch}</Button>
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
