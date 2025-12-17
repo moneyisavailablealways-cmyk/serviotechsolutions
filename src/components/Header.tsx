@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Menu, X, Settings } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import logo from "@/assets/logo.jpg";
 import { useTranslations } from "@/hooks/use-translations";
 
@@ -35,9 +36,18 @@ const Header = () => {
           <button onClick={() => scrollToSection("portfolio")} className="text-foreground hover:text-primary transition-colors">{t.portfolio}</button>
           <button onClick={() => scrollToSection("leadership")} className="text-foreground hover:text-primary transition-colors">{t.leadershipTeam}</button>
           <Button onClick={() => scrollToSection("contact")} className="bg-primary hover:bg-primary/90">{t.getInTouch}</Button>
-          <Link to="/settings" className="text-foreground hover:text-primary transition-colors">
-            <Settings size={20} />
-          </Link>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link to="/settings" className="text-foreground hover:text-primary transition-colors">
+                  <Settings size={20} />
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{t.settings}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </nav>
 
         <button className="md:hidden text-foreground" onClick={() => setIsMenuOpen(!isMenuOpen)}>
